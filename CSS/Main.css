@@ -1,0 +1,168 @@
+body {
+    background: black;
+    color: #fec303;
+}
+
+.Motto {
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+
+/******************************
+############################### header
+******************************/
+header {
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.Logo_Header img {
+    max-height: 120px;
+    width: auto;
+}
+
+/******************************
+############################### Navigation
+******************************/
+
+nav {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+}
+
+nav a {
+    padding: 1rem;
+    color: #fec303;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+/******************************
+############################### News
+******************************/
+
+article{
+    overflow: hidden;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.News_Image {
+    display: flex;
+    justify-content: right;
+    /*padding: 1rem;*/
+    margin: 1rem;
+    max-height: 200px;
+    width: 35%;
+}
+
+.News_Image img {
+    object-fit: contain;
+    width:100%;
+    height:100%;
+}
+
+.News_Text {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    max-height: 200px;
+    width: 65%;
+    margin-bottom: 1rem;
+}
+
+.News_Text a {
+    width: max-content;
+    overflow: hidden;
+    background: #fec303;
+    color: black;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+hr {
+    border: #fec303 solid;
+}
+
+/******************************
+############################### Trainingszeiten
+******************************/
+
+.table {
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.table th, td {
+    border-style: solid;
+    border-width: 0.1rem;
+    border-color: #ffcc00;
+    padding: 1rem;
+    text-align: center;
+}
+
+.Hallen {
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    /*flex-direction: column;*/
+    align-items: center;
+}
+
+.Halle_einzeln {
+    padding: 1rem;
+    text-align: center;
+}
+
+.Hallen img {
+    max-height: 200px;
+
+}
+
+/******************************
+############################### Kontakt
+******************************/
+
+.Map {
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    max-height: 90%;
+    width: 90%;
+}
+
+.kontaktdaten {
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    max-height: 90%;
+    width: 90%;
+}
+
+.kontaktdaten p {
+    text-align: center;
+}
+
+.Info {
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+/******************************
+############################### Footer
+******************************/
