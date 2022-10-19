@@ -1,0 +1,7 @@
+RewriteEngine on
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILE} !-f
+RewriteCond %{REQUEST_FILE} !-d
+RewriteRule . /index.php [L]
+#EnableSendfile off
