@@ -40,7 +40,7 @@ header {
 }
 
 /******************************
-############################### navigation.phtml
+############################### Navigation
 ******************************/
 
 nav {
@@ -50,10 +50,16 @@ nav {
 }
 
 nav a {
-    padding: 1rem;
     color: #fec303;
-    font-size: 1.5rem;
     font-weight: bold;
+    padding: 0.5rem;
+    font-size: 0.75rem;
+}
+@media (min-width: 500px) {
+    nav a {
+        font-size: 1.5rem;
+        padding: 1rem;
+    }
 }
 
 /******************************
@@ -65,27 +71,42 @@ nav a {
     padding-bottom: 1rem;
     height: 800px;
     width: auto;
+    /*max-width: 80%;*/
     background-image:url("/MediaFiles/Bilder/Home/Home-Main.jpg");
     background-position: center;
     background-size: 1400px;
     background-repeat: no-repeat;
 }
+
+.home-placeholder {
+    display: none;
+}
+@media (min-width: 500px) {
+    .home-placeholder {
+        display: flex;
+        width: 60%;
+    }
+}
+
 .home-ueberschrift {
     z-index: 1;
     position: relative;
     display: flex;
     width: 100%;
     text-align: left;
-
+    justify-content: center;
 }
 
-.home img {
-    max-height: 800px;
+.home-text h1 {
+    font-size: 1.5rem;
 }
-
-.home-text {
-
-    padding: unset;
+.home-text p {
+    font-size: 0.75rem;
+}
+@media (min-width: 500px) {
+    .home-text h1 {
+        font-size: 3rem;
+    }
 }
 
 .home-link-probe {
@@ -94,23 +115,57 @@ nav a {
     color: black;
     background-color: #fec303;
     width: max-content;
-    padding: 0.5rem;
-    font-size: 1rem;
+    padding: 0.2rem;
+    font-size: 0.75rem;
     font-weight: bold;
+}
+@media (min-width: 500px) {
+    .home-link-probe  {
+        padding: 0.5rem;
+        font-size: 1rem;
+    }
 }
 
 .home-disziplinen-main {
-    /*width: 90%;*/
-    /*align-items: center;*/
     display: flex;
     justify-content: center;
 }
+
+.home-disziplinen {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    height: 150px;
+}
+@media (min-width: 576px) {
+    .home-disziplinen {
+        height: 200px;
+    }
+}
+@media (min-width: 768px) {
+    .home-disziplinen {
+        height: 250px;
+    }
+}
+@media (min-width: 992px) {
+    .home-disziplinen {
+        height: 350px;
+    }
+}
+@media (min-width: 1200px) {
+    .home-disziplinen {
+        height: 500px;
+    }
+}
+
+.home-disziplin-wettkampf,
+.home-disziplin-workout,
+.home-disziplin-selbstvereidigung,
 .home-disziplin-schattenkampf {
-    background-image: url("/MediaFiles/Bilder/Home/Formen.jpg");
-    background-position: center;
     background-size: 100%;
     background-repeat: no-repeat;
-    height: 300px;
+    height: auto;
+    max-height: 150px;
     width: 25%;
     border-width: 1px;
     border-style: solid;
@@ -120,65 +175,52 @@ nav a {
     text-align: center;
     color: #fec303;
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 2vw;
     text-shadow: black 1px 1px;
-
+}
+@media (min-width: 576px) {
+    .home-disziplin-wettkampf,
+    .home-disziplin-workout,
+    .home-disziplin-selbstvereidigung,
+    .home-disziplin-schattenkampf {
+        max-height: 200px;
+    }
+}
+@media (min-width: 768px) {
+    .home-disziplin-wettkampf,
+    .home-disziplin-workout,
+    .home-disziplin-selbstvereidigung,
+    .home-disziplin-schattenkampf {
+        max-height: 250px;
+    }
+}
+@media (min-width: 992px) {
+    .home-disziplin-wettkampf,
+    .home-disziplin-workout,
+    .home-disziplin-selbstvereidigung,
+    .home-disziplin-schattenkampf {
+        max-height: 350px;
+    }
+}
+@media (min-width: 1200px ) {
+    .home-disziplin-wettkampf,
+    .home-disziplin-workout,
+    .home-disziplin-selbstvereidigung,
+    .home-disziplin-schattenkampf {
+        max-height: 500px;
+    }
+}
+.home-disziplin-schattenkampf {
+    background-image: url("/MediaFiles/Bilder/Home/Formen.jpg");
 }
 .home-disziplin-wettkampf {
     background-image: url("/MediaFiles/Bilder/Home/Wettkampf.jpg");
-    background-position: center;
-    background-size: 100%;
-    background-repeat: no-repeat;
-    height: 300px;
-    width: 25%;
-    border-width: 1px;
-    border-style: solid;
-    border-color: black;
-    display: block;
-    text-decoration: none;
-    text-align: center;
-    color: #fec303;
-    font-weight: bold;
-    font-size: 1rem;
-    text-shadow: black 1px 1px;
-
 }
 .home-disziplin-workout {
     background-image: url("/MediaFiles/Bilder/Home/Workout.jpg");
-    background-position: center;
-    background-size: 100%;
-    background-repeat: no-repeat;
-    height: 300px;
-    width: 25%;
-    border-width: 1px;
-    border-style: solid;
-    border-color: black;
-    display: block;
-    text-decoration: none;
-    text-align: center;
-    color: #fec303;
-    font-weight: bold;
-    font-size: 1rem;
-    text-shadow: black 1px 1px;
-
 }
 .home-disziplin-selbstvereidigung {
     background-image: url("/MediaFiles/Bilder/Home/Selbsverteidigung.jpg");
-    background-position: center;
-    background-size: 100%;
-    background-repeat: no-repeat;
-    height: 300px;
-    width: 25%;
-    border-width: 1px;
-    border-style: solid;
-    border-color: black;
-    display: block;
-    text-decoration: none;
-    text-align: center;
-    color: #fec303;
-    font-weight: bold;
-    font-size: 1rem;
-    text-shadow: black 1px 1px;
 }
 
 .disziplinen {
