@@ -15,15 +15,6 @@ body {
 hr {
     border: #fec303 solid;
 }
-/*h1 {*/
-/*    padding: 1rem;*/
-/*    text-align: center;*/
-/*}*/
-
-/*p {*/
-/*    padding: 1rem;*/
-/*    text-align: center;*/
-/*}*/
 
 /******************************
 ############################### header
@@ -71,7 +62,6 @@ nav a {
     padding-bottom: 1rem;
     height: 800px;
     width: auto;
-    /*max-width: 80%;*/
     background-image:url("/MediaFiles/Bilder/Home/Home-Main.jpg");
     background-position: center;
     background-size: 1400px;
@@ -321,26 +311,31 @@ article{
     text-align: center;
 }
 
+.probetraining {
+    text-align: center;
+}
+
 .Hallen {
     padding: 1rem;
     display: flex;
     justify-content: center;
-    /*flex-direction: column;*/
     align-items: center;
-}
-
-.probetraining {
-    text-align: center;
 }
 
 .Halle_einzeln {
     padding: 1rem;
     text-align: center;
 }
+.Halle_einzeln h2 {
+    font-size: 2.5vw;
+}
+.Halle_einzeln p {
+    font-size: 2vw;
+}
 
 .Hallen img {
     object-fit: contain;
-    max-height: 300px;
+    max-height: 500px;
     width:100%;
     height:100%;
 }
