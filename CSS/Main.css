@@ -363,7 +363,6 @@ article{
     flex-direction: column;
     align-items: center;
     max-height: 100%;
-    width: 100%;
 }
 
 .kontaktdaten {
@@ -372,19 +371,9 @@ article{
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    max-height: 90%;
-    width: 90%;
 }
 
 .kontaktdaten p {
-    text-align: center;
-}
-
-.Info {
-    padding: 1rem;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
     text-align: center;
 }
 
