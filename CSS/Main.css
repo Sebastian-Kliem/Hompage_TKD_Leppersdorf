@@ -276,6 +276,13 @@ article{
     height: auto;
     margin-bottom: 1rem;
 }
+.News_Text h1{
+    font-size: 3vw;
+}
+.News_Text p{
+    font-size: 2vw;
+}
+
 
 .News_Text a {
     width: max-content;
