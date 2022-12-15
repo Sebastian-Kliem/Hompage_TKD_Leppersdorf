@@ -2,14 +2,14 @@ version: "3"
 
 services:
   apache:
-    image: webdevops/php-nginx-dev:latest
+    image: webdevops/apache:latest
     container_name: "udemy-apache"
     environment:
       - WEB_PHP_SOCKET=php:9000
     volumes:
       - ..:/app
     ports:
-      - "8080:80"
+      - "8080:443"
 
   php:
     container_name: "udemy-php"
@@ -21,7 +21,7 @@ services:
   mySql:
     image: mysql:latest
     command: --default-authentication-plugin=mysql_native_password
-    restart: always
+#    restart: always
     container_name: "udemy-mySql"
     ports:
       - "33306:3306"
@@ -30,4 +30,6 @@ services:
       - MYSQL_DATABASE=testdatabase
       - MYSQL_USER=testuser
       - MYSQL_PASSWORD=testpassword
+    volumes:
+      - ./mySql/data:/var/lib/mysql
 

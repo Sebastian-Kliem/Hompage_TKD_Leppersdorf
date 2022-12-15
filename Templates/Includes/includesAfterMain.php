@@ -1,1 +1,1 @@
-<?php include("IncludesAfterMain/footer.phtml"); ?>
+<?php include("IncludesAfterMain/footer.phtml");

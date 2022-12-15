@@ -17,10 +17,8 @@ class Tamplate
 
         ob_start();
         require_once BASEPATH . "/Templates/" . $this->template;
-//        require_once BASEPATH . "/Templates/" . $this->template;
         $return = ob_get_contents();
         ob_clean();
-
         return $return;
 
     }

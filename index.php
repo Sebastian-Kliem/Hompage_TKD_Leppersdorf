@@ -1,7 +1,5 @@
 <?php
 
-
-
 function autoloader($class)
 {
     $newName = str_replace('\\', '/', $class);

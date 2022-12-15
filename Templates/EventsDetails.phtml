@@ -1,0 +1,23 @@
+<?php include("Includes/includesBeforeMain.php"); ?>
+
+<?php $eventFiles = $events->getDocuments() ?>
+    <main>
+
+        <?php print_r($events)?>
+
+        <p><?php echo $events->getDate() ?></p>
+        <p><?php echo $events->getName() ?></p>
+        <p><?php echo $events->getDescription() ?></p>
+
+        <?php foreach ($eventFiles as $file): ?>
+        <p><?php echo $file['Filename'] ?></p>
+        <p><?php echo $file['Data'] ?></p>
+        <?php endforeach; ?>
+
+        <?php if($events->getDescription() == '') : ?>
+            <p> leer </p>
+        <?php endif; ?>
+
+    </main>
+
+<?php include("Includes/includesAfterMain.php"); ?>

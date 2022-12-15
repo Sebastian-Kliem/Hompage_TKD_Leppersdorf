@@ -1,0 +1,56 @@
+<?php include("Includes/includesBeforeMain.php"); ?>
+
+    <main>
+        <div>
+            <h1>Terminkalender</h1>
+        </div>
+
+        <div>
+            <h3>
+                <?php $thisYear = date("Y");
+                    echo $thisYear; ?>
+            </h3>
+            <div class="newsTable">
+
+                <table>
+                    <tbody>
+                            <?php foreach ($events as $event):
+                                if ($event->getEventYear() == $thisYear) {
+                             ?>
+
+                                <tr>
+                                    <td><?= $event->getDate(); ?></td>
+                                    <td><?= $event->getName(); ?></td>
+                                    <td><a href="<?php echo App::getBaseURL() ?>termine/details/id/<?php echo $event->getId() ?>">Trainingzeiten</a></td>
+                                </tr>
+                            <?php };endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div>
+            <h3>
+                <?php $nextYear = date("Y") +1;
+                echo $nextYear; ?>
+            </h3>
+            <div class="newsTable">
+                <table>
+                    <tbody>
+                    <?php foreach ($events as $event):
+                        if ($event->getEventYear() == $nextYear) {
+                            ?>
+
+                            <tr>
+                                <td><?= $event->getDate(); ?></td>
+                                <td><?= $event->getName(); ?></td>
+                                <td><a href="<?php echo App::getBaseURL() ?>termine/overview/<?php echo $event->getId() ?>">Trainingzeiten</a></td>
+                            </tr>
+                        <?php };endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+<?php include("Includes/includesAfterMain.php"); ?>
