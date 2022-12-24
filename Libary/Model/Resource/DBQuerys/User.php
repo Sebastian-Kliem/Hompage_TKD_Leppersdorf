@@ -18,8 +18,7 @@ class User extends Base
         $query->execute([$email]);
 
         while ($row = $query->fetch(\PDO::FETCH_ASSOC)) {
-//            if (password_verify($password, $row['Pass'])) {
-//            if ($password === $row['Pass']) {
+            if (password_verify($password, $row['Pass'])) {
                 $user = new UserModel(
                     $row['id_Users'],
                     $row['Username'],
@@ -28,7 +27,7 @@ class User extends Base
                     $row['isModerator']
                 );
                 return $user;
-//            }
+            }
         }
         return false;
     }

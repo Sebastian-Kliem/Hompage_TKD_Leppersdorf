@@ -10,7 +10,7 @@ class Session
     {
         $userClass = new User();
         $user = $userClass->logIn($email, $password);
-//        var_dump($user);
+
         if ($user) {
             $_SESSION['userId'] = $user->getId();
             $_SESSION['eMail'] = $user->getEMail();

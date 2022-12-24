@@ -10,35 +10,9 @@ class Home extends Base_Controller
     {
         session_start();
 
-        if (is_dir('temp')) {
-//            if ( $handle = opendir('temp/') )
-//            {
-//                // einlesen der Verzeichnisses
-//                while (($file = readdir($handle)) !== false)
-//                {
-//                    echo "<li>Dateiname: ";
-//                    echo $file;
-//
-//                    echo "<ul><li>Dateityp: ";
-//                    echo filetype( $file );
-//                    echo "</li></ul>\n";
-//                }
-//                closedir($handle);
-//            }
-            foreach (scandir('temp') as $file) {
-                if ($file === ".." or $file === ".") continue;
-                var_dump($file);
-                echo '<br>';
-                var_dump(filemtime('temp/'.$file));
+        var_dump(password_hash('testpassword', PASSWORD_DEFAULT));
 
-                if ((filemtime('temp/'.$file) + 600) <= time()) {
-                    unlink('temp/'.$file);
-                    echo '<br>File gelöscht';
-                }
-                echo '<br>--------------------<br>';
-            }
-
-        }
+        $this->deleteTempFiles();
 
         echo $this->renderTemplae('home.phtml', []);
     }
@@ -78,5 +52,20 @@ class Home extends Base_Controller
     public function logout($parameter)
     {
 
+    }
+
+    private function deleteTempFiles()
+    {
+        if (is_dir('temp')) {
+            foreach (scandir('temp') as $file) {
+                if ($file === ".." or $file === ".") {
+                    continue;
+                }
+
+                if ((filemtime('temp/' . $file) + 600) <= time()) {
+                    unlink('temp/' . $file);
+                }
+            }
+        }
     }
 }
