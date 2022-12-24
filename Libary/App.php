@@ -4,6 +4,6 @@ class App
 {
     public static function getBaseURL()
     {
-        return "https://localhost:8080/";
+        return "http://homepageleppe.ddev.site/";
     }
 }

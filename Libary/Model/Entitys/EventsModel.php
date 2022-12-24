@@ -12,9 +12,9 @@ class EventsModel
     private string $eventMonth;
     private string $id;
 
-    public function __construct($id, $date, $name)
+    public function __construct($date, $name)
     {
-        $this->id = $id;
+
         $this->date = $date;
         $this->name = $name;
 

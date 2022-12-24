@@ -1,9 +1,13 @@
 version: "3"
 
 services:
-  apache:
-    image: webdevops/apache:latest
-    container_name: "udemy-apache"
+  webserver:
+    build:
+      context: ./webserver
+#      args:
+#        uid: ${UID}
+#    image: webdevops/apache:latest
+    container_name: "udemy-webserver"
     environment:
       - WEB_PHP_SOCKET=php:9000
     volumes:

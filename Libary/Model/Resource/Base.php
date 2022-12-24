@@ -10,11 +10,11 @@ class Base
 
     protected function connectDB()
     {
-        $dbHost = "udemy-mySql";
-        $dbPort = "3306";
-        $dbName = "testdatabase";
-        $dbUser = "testuser";
-        $dbPassword = "testpassword";
+        $dbHost = "db";
+        $dbPort = "33306";
+        $dbName = "TKD_Leppe";
+        $dbUser = "TKD_Leppe";
+        $dbPassword = "TKD_Leppe";
 
         $dsn = "mysql:host=$dbHost;dbname=$dbName";
 

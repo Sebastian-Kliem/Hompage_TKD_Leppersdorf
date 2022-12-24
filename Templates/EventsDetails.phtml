@@ -3,19 +3,38 @@
 <?php $eventFiles = $events->getDocuments() ?>
     <main>
 
-        <?php print_r($events)?>
+        <div>
+            <?php echo $events->getDescription() ?>
+        </div>
 
-        <p><?php echo $events->getDate() ?></p>
-        <p><?php echo $events->getName() ?></p>
-        <p><?php echo $events->getDescription() ?></p>
+        <div>
+            <h2>Dokumente:</h2>
+            <ol>
+            <?php foreach ($eventFiles as $file): ?>
 
-        <?php foreach ($eventFiles as $file): ?>
-        <p><?php echo $file['Filename'] ?></p>
-        <p><?php echo $file['Data'] ?></p>
-        <?php endforeach; ?>
+            <a href="<?php echo App::getBaseURL()."/". $file ?>"><?php echo $file; ?></a>
+            <br>
 
-        <?php if($events->getDescription() == '') : ?>
-            <p> leer </p>
+            <?php endforeach; ?>
+            </ol>
+        </div>
+
+        <?php if($canEdit): ?>
+
+            <div>
+                <form method="post" class="event-formular" enctype="multipart/form-data">
+
+                    <label for="description">Beschreibung:</label><br>
+                    <input type="text" id="description" name="description" required><br>
+
+                    <label for="file1">Beschreibung:</label><br>
+                    <input name="file[]" type="file" multiple id="file1"><br>
+
+                    <button type="submit">submit</button>
+
+                </form>
+            </div>
+
         <?php endif; ?>
 
     </main>

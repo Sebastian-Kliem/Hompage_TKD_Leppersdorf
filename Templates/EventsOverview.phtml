@@ -21,7 +21,7 @@
                                 <tr>
                                     <td><?= $event->getDate(); ?></td>
                                     <td><?= $event->getName(); ?></td>
-                                    <td><a href="<?php echo App::getBaseURL() ?>termine/details/id/<?php echo $event->getId() ?>">Trainingzeiten</a></td>
+                                    <td><a href="<?php echo App::getBaseURL() ?>termine/details/id/<?php echo $event->getId() ?>">Details</a></td>
                                 </tr>
                             <?php };endforeach; ?>
                     </tbody>
@@ -51,6 +51,33 @@
                 </table>
             </div>
         </div>
+
+        <?php if($canEdit): ?>
+
+        <div>
+            <form method="post" class="event-formular" enctype="multipart/form-data">
+
+                <label for="date">Datum:</label><br>
+                <input type="date" id="date" name="date" required><br>
+
+                <label for="name">Name:</label><br>
+                <input type="text" id="name" name="name" required><br>
+
+                <label for="description">Beschreibung:</label><br>
+                <input type="text" id="description" name="description" required><br>
+
+                <label for="file1">Dateien:</label><br>
+                <input name="file[]" type="file" multiple id="file1" accept="application/pdf,image/jpeg,image/png"><br>
+
+                <button type="submit">Termin erstellen</button>
+
+            </form>
+        </div>
+
+        <?php endif; ?>
+
+
+
     </main>
 
 <?php include("Includes/includesAfterMain.php"); ?>
