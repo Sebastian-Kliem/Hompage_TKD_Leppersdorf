@@ -6,7 +6,7 @@ use Model\Entitys\EventsModel;
 use Model\Entitys\UserModel;
 use Model\Resource\Base;
 
-class User extends Base
+class UsersDBQuery extends Base
 {
 
     public function logIn($email, $password)
@@ -38,14 +38,13 @@ class User extends Base
         $this->connectDB();
         $query = $this->connection->prepare(
             "INSERT INTO Users (eMail, Username, Pass)
-            VALUES (:eMail, :Pass, :Username)"
+            VALUES (:eMail, :Username, :Pass)"
         );
 
         $query->bindParam(':eMail', $email);
         $query->bindParam(':Pass', $passwordHash);
         $query->bindParam(':Username', $Username);
 
-        $query->execute();
+        return $query->execute();
     }
-
 }

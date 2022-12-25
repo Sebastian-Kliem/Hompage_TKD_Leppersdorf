@@ -1,14 +1,31 @@
 <?php include("Includes/includesBeforeMain.php"); ?>
 
 <main>
+
+    <?php if (isset($register)) {
+        if ($register) : ?>
+            <p>Registrierung erfolgreich.<br>
+                Bitte loggen sie sich ein.</p>
+        <?php else : ?>
+            <p>Bei der registrierung ist ein Fehler aufgetreten.<br>
+                Bitte versuchen sie es erneut</p>
+        <?php endif; ?>
+    <?php } ?>
+
+    <?php if (isset($logout)) {
+        if ($logout) : ?>
+            <p>Ausloggen erfolgreich.</p>
+        <?php endif; ?>
+    <?php } ?>
+
     <div class="Login">
-        <form method="post" class="login-formular">
-            <p>eMail:</p>
-            <label>
-                <input type="text" name="email">
+        <form method="post" class="login-formular" >
+
+            <label for="email">E-Mail:
+                <input type="email" name="email">
             </label>
-            <p>Passwort:</p>
-            <label>
+
+            <label for="password">Passwort:
                 <input type="password" name="password">
             </label>
 
@@ -18,6 +35,26 @@
 
 
 
+    </div>
+
+    <div class="Login">
+        <form method="post" class="register-formular" >
+
+            <label for="register_email">E-Mail:
+                <input type="email" name="register_email">
+            </label>
+
+            <label for="register_username">Benutzername:
+                <input type="text" name="register_username">
+            </label>
+
+            <label for="register_password">Passwort:
+                <input type="password" name="register_password">
+            </label>
+
+            <input type="submit" value="Log In">
+
+        </form>
     </div>
 
 

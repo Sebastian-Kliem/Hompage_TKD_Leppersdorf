@@ -2,6 +2,7 @@
 
 namespace Controller;
 
+use Model\Resource\DBQuerys\UsersDBQuery;
 use Session\Session;
 
 class Home extends Base_Controller
@@ -9,8 +10,6 @@ class Home extends Base_Controller
     public function homeAction($parameter)
     {
         session_start();
-
-        var_dump(password_hash('testpassword', PASSWORD_DEFAULT));
 
         $this->deleteTempFiles();
 
@@ -36,22 +35,30 @@ class Home extends Base_Controller
         session_start();
 
         if ($this->isPost()) {
-            if (Session::logIn($_POST['email'], $_POST['password'])){
-                header('Location: '. \App::getBaseURL());
+            if (isset($_POST['email'])) {
+                if (Session::logIn($_POST['email'], $_POST['password'])){
+                    header('Location: '. \App::getBaseURL());
+
+                }
+            } elseif (isset($_POST['register_email'])) {
+               $dbQuery = new UsersDBQuery();
+               if ($dbQuery->register($_POST['register_email'], $_POST['register_username'], $_POST['register_password'])){
+                   echo $this->renderTemplae('login.phtml', ['register' => true]);
+               } else {
+                   echo $this->renderTemplae('login.phtml', ['register' => false]);
+               }
             }
+
         }
 
         echo $this->renderTemplae('login.phtml', []);
     }
 
-    public function register($parameter)
+    public function logoutAction($parameter)
     {
-
-    }
-
-    public function logout($parameter)
-    {
-
+        session_start();
+        $_SESSION = [];
+        echo $this->renderTemplae('logout.phtml', ['logout' => true]);
     }
 
     private function deleteTempFiles()

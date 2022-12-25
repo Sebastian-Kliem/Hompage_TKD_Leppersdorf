@@ -2,13 +2,13 @@
 
 namespace Session;
 
-use Model\Resource\DBQuerys\User;
+use Model\Resource\DBQuerys\UsersDBQuery;
 
 class Session
 {
     public static function logIn(string $email, string $password): bool
     {
-        $userClass = new User();
+        $userClass = new UsersDBQuery();
         $user = $userClass->logIn($email, $password);
 
         if ($user) {

@@ -1,7 +1,13 @@
         <footer>
             <a href="<?php echo App::getBaseURL() ?>home/datenschutzerklaerung">Datenschutzerklärung</a>
             <a href="<?php echo App::getBaseURL() ?>home/impressum">Impressum</a>
+
+            <?php if (isset($_SESSION['userId'])) : ?>
+            <a href="<?php echo App::getBaseURL() ?>home/logout">Log out</a>
+            <?php else: ?>
             <a href="<?php echo App::getBaseURL() ?>home/login">Log in</a>
+            <?php endif; ?>
+
         </footer>
     </body>
 </html>
