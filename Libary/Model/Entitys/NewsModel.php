@@ -5,11 +5,13 @@ namespace Model\Entitys;
 class NewsModel
 {
     private string $id;
-    private string $date;
+    private string $date = "";
     private string $headline;
     private string $description;
-    private array $thumbnail;
-    private array $documents;
+    private string $thumbnailName = "";
+    private string $thumbnailData = "";
+    private array $documents = [];
+    private array $thumbnailUploadArray = [];
 
     /**
      * @param string $headline
@@ -85,21 +87,6 @@ class NewsModel
         $this->description = $description;
     }
 
-    /**
-     * @return array
-     */
-    public function getThumbnail(): array
-    {
-        return $this->thumbnail;
-    }
-
-    /**
-     * @param array $thumbnail
-     */
-    public function setThumbnail(array $thumbnail): void
-    {
-        $this->thumbnail = $thumbnail;
-    }
 
     /**
      * @return array
@@ -117,6 +104,51 @@ class NewsModel
         $this->documents = $documents;
     }
 
+    /**
+     * @return string
+     */
+    public function getThumbnailName(): string
+    {
+        return $this->thumbnailName;
+    }
 
+    /**
+     * @param string $thumbnailName
+     */
+    public function setThumbnailName(string $thumbnailName): void
+    {
+        $this->thumbnailName = $thumbnailName;
+    }
 
+    /**
+     * @return string
+     */
+    public function getThumbnailData(): string
+    {
+        return $this->thumbnailData;
+    }
+
+    /**
+     * @param string $thumbnailData
+     */
+    public function setThumbnailData(string $thumbnailData): void
+    {
+        $this->thumbnailData = $thumbnailData;
+    }
+
+    /**
+     * @return array
+     */
+    public function getThumbnailUploadArray(): array
+    {
+        return $this->thumbnailUploadArray;
+    }
+
+    /**
+     * @param array $thumbnailUploadArray
+     */
+    public function setThumbnailUploadArray(array $thumbnailUploadArray): void
+    {
+        $this->thumbnailUploadArray = $thumbnailUploadArray;
+    }
 }

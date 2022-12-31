@@ -1,0 +1,55 @@
+<?php include("Includes/includesBeforeMain.php"); ?>
+
+<main>
+    <div class="News_Overview">
+        <?php foreach ($newsArray as $news): ?>
+            <div class="News_Overview_Table_Maindiv">
+                <div class="News_Overview_Table_Image">
+                <?php if (base64_decode($news->getThumbnailData()) !== "" && $news->getThumbnailName() !== "") { ?>
+                    <img src="data:image/jpg;base64,<?php echo $news->getThumbnailData(); ?>"
+                         alt="<?php echo $news->getThumbnailName(); ?>">
+                <?php } ?>
+                </div>
+
+                <div class="News_Overview_Table_Headline">
+                    <?php echo $news->getHeadline(); ?>
+                </div>
+
+                <div class="News_Overview_Table_Details">
+                <a href="<?php echo App::getBaseURL(); ?>news/details/id/<?php echo $news->getId(); ?>">Weiterlesen</a>
+                </div>
+
+            </div>
+
+            <hr>
+
+        <?php endforeach; ?>
+    </div>
+
+
+    <?php if($canEdit): ?>
+
+            <div>
+                <form method="post" class="new-news-formular" enctype="multipart/form-data">
+
+                    <label for="headline">Überschrift:</label><br>
+                    <input type="text" id="headline" name="headline" required><br>
+
+                    <label for="description">Beschreibung:</label><br>
+                    <input type="text" id="description" name="description" required><br>
+
+                    <label for="thumbnail">Vorschaubild:</label><br>
+                    <input name="files[]" type="file" id="thumbnail" accept="image/jpeg,image/png"><br>
+
+                    <label for="files">Dateien:</label><br>
+                    <input name="files[]" type="file" multiple id="files" accept="application/pdf,image/jpeg,image/png"><br>
+
+                    <button type="submit">Termin erstellen</button>
+
+                </form>
+            </div>
+        <?php endif; ?>
+
+    </main>
+
+<?php include("Includes/includesAfterMain.php"); ?>

@@ -18,7 +18,7 @@ class Termine extends Base_Controller
 
             $filesupload = [];
             if(!empty($_FILES)) {
-                $filesupload = $this->normalize_files_array($_FILES);
+                $filesupload = App::normalize_Postfiles_array($_FILES);
             }
 
             $eventModel = new EventsModel($_POST['date'], $_POST['name']);
@@ -60,30 +60,30 @@ class Termine extends Base_Controller
         echo $this->renderTemplae('EventsDetails.phtml', ['events' => $eventArray, 'canEdit' => $canEdit]);
     }
 
-    private function normalize_files_array(array $files) {
-
-        $normalized_array = [];
-
-        foreach($files as $index => $file) {
-
-            if (!is_array($file['name'])) {
-                $normalized_array[$index][] = $file;
-                continue;
-            }
-
-            foreach($file['name'] as $idx => $name) {
-                $normalized_array[$index][$idx] = [
-                    'name' => $name,
-                    'type' => $file['type'][$idx],
-                    'tmp_name' => $file['tmp_name'][$idx],
-                    'error' => $file['error'][$idx],
-                    'size' => $file['size'][$idx]
-                ];
-            }
-
-        }
-
-        return $normalized_array;
-
-    }
+//    private function normalize_files_array(array $files) {
+//
+//        $normalized_array = [];
+//
+//        foreach($files as $index => $file) {
+//
+//            if (!is_array($file['name'])) {
+//                $normalized_array[$index][] = $file;
+//                continue;
+//            }
+//
+//            foreach($file['name'] as $idx => $name) {
+//                $normalized_array[$index][$idx] = [
+//                    'name' => $name,
+//                    'type' => $file['type'][$idx],
+//                    'tmp_name' => $file['tmp_name'][$idx],
+//                    'error' => $file['error'][$idx],
+//                    'size' => $file['size'][$idx]
+//                ];
+//            }
+//
+//        }
+//
+//        return $normalized_array;
+//
+//    }
 }

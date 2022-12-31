@@ -2,6 +2,7 @@
 
 namespace Model\Resource\DBQuerys;
 
+use Exception;
 use Model\Entitys\EventsModel;
 use Model\Resource\Base;
 
@@ -9,17 +10,22 @@ class EventsDBQuery extends Base
 {
     public function getEventsNowOrInFuture(): array
     {
-        $this->connectDB();
-        $query = $this->connection->prepare(
-            "Select * from Events where EventDate >= CURDATE() ORDER BY EventDate");
-        $query->execute();
-
         $events = [];
-        while ($row = $query->fetch(\PDO::FETCH_ASSOC)) {
-            $event = new EventsModel($row['EventDate'], $row['EventName']);
-            $event->setId($row['Events_id']);
-//
-            $events[] = $event;
+        try {
+            $this->connectDB();
+            $query = $this->connection->prepare(
+                "Select * from Events where EventDate >= CURDATE() ORDER BY EventDate");
+            $query->execute();
+
+            while ($row = $query->fetch(\PDO::FETCH_ASSOC)) {
+                $event = new EventsModel($row['EventDate'], $row['EventName']);
+                $event->setId($row['Events_id']);
+                $events[] = $event;
+            }
+
+        } catch (exception $e) {
+            // TODO: Fehler schicker darstellen
+            echo "ein Fehler ist aufgetreten. Bitte versuchen sie es später noch einmal";
         }
         return $events;
     }

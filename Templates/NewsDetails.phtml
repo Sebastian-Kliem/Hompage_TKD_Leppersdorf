@@ -1,0 +1,43 @@
+<?php include("Includes/includesBeforeMain.php"); ?>
+
+
+    <main>
+        <div class="News_Details_Maindiv">
+        <div>
+            <h2>
+                <?php echo $news->getHeadline() ?>
+            </h2>
+        </div>
+
+        <div class="News_Details_Description">
+            <?php echo $news->getDescription() ?>
+        </div>
+
+        <div class="News_Details_Images">
+            <?php $NewsFiles = $news->getDocuments();
+                foreach ($NewsFiles as $file): ?>
+                    <img src="<?php echo "/temp/".$file ?>" alt="test">
+            <?php endforeach; ?>
+        </div>
+        </div>
+<!--        --><?php //if($canEdit): ?>
+<!---->
+<!--            <div>-->
+<!--                <form method="post" class="event-formular" enctype="multipart/form-data">-->
+<!---->
+<!--                    <label for="description">Beschreibung:</label><br>-->
+<!--                    <input type="text" id="description" name="description" required><br>-->
+<!---->
+<!--                    <label for="file1">Beschreibung:</label><br>-->
+<!--                    <input name="file[]" type="file" multiple id="file1"><br>-->
+<!---->
+<!--                    <button type="submit">submit</button>-->
+<!---->
+<!--                </form>-->
+<!--            </div>-->
+<!---->
+<!--        --><?php //endif; ?>
+
+    </main>
+
+<?php include("Includes/includesAfterMain.php"); ?>

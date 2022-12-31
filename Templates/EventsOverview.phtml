@@ -6,50 +6,65 @@
         </div>
 
         <div>
-            <h3>
-                <?php $thisYear = date("Y");
-                    echo $thisYear; ?>
-            </h3>
-            <div class="newsTable">
-
-                <table>
-                    <tbody>
-                            <?php foreach ($events as $event):
-                                if ($event->getEventYear() == $thisYear) {
-                             ?>
-
-                                <tr>
-                                    <td><?= $event->getDate(); ?></td>
-                                    <td><?= $event->getName(); ?></td>
-                                    <td><a href="<?php echo App::getBaseURL() ?>termine/details/id/<?php echo $event->getId() ?>">Details</a></td>
-                                </tr>
-                            <?php };endforeach; ?>
-                    </tbody>
-                </table>
+            <div class="Events_Overview_Year">
+                <h2>
+                    <?php $thisYear = date("Y");
+                        echo $thisYear; ?>
+                </h2>
             </div>
+
+            <?php foreach ($events as $event):
+                if ($event->getEventYear() == $thisYear) {
+            ?>
+                <div class="Events_Overview_Table">
+
+                    <div class="Events_Overview_Date">
+                        <?= $event->getDate(); ?>
+                    </div>
+
+                    <div class="Events_Overview_Headline">
+                        <?= $event->getName(); ?>
+                    </div>
+
+                    <div class="Events_Overview_Details">
+                        <a href="<?php echo App::getBaseURL() ?>termine/details/id/<?php echo $event->getId() ?>">Details</a>
+                    </div>
+                </div>
+                <hr>
+
+            <?php };endforeach; ?>
+
         </div>
 
         <div>
-            <h3>
-                <?php $nextYear = date("Y") +1;
-                echo $nextYear; ?>
-            </h3>
-            <div class="newsTable">
-                <table>
-                    <tbody>
-                    <?php foreach ($events as $event):
-                        if ($event->getEventYear() == $nextYear) {
-                            ?>
-
-                            <tr>
-                                <td><?= $event->getDate(); ?></td>
-                                <td><?= $event->getName(); ?></td>
-                                <td><a href="<?php echo App::getBaseURL() ?>termine/overview/<?php echo $event->getId() ?>">Trainingzeiten</a></td>
-                            </tr>
-                        <?php };endforeach; ?>
-                    </tbody>
-                </table>
+            <div class="Events_Overview_Year">
+                <h2>
+                    <?php $nextYear = date("Y") +1;
+                    echo $nextYear; ?>
+                </h2>
             </div>
+
+            <?php foreach ($events as $event):
+                if ($event->getEventYear() == $nextYear) {
+            ?>
+                <div class="Events_Overview_Table">
+
+                    <div class="Events_Overview_Date">
+                        <?= $event->getDate(); ?>
+                    </div>
+
+                    <div class="Events_Overview_Headline">
+                        <?= $event->getName(); ?>
+                    </div>
+
+                    <div class="Events_Overview_Details">
+                        <a href="<?php echo App::getBaseURL() ?>termine/details/id/<?php echo $event->getId() ?>">Details</a>
+                    </div>
+                </div>
+                <hr>
+
+            <?php };endforeach; ?>
+
         </div>
 
         <?php if($canEdit): ?>

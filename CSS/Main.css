@@ -13,7 +13,19 @@ body {
 }
 
 hr {
-    border: #fec303 solid;
+    border: #fec303 1px solid;
+}
+
+a {
+    color: #fec303;
+}
+
+a:hover, a:focus {
+    color: azure;
+}
+
+h1, h2 {
+    text-align: center;
 }
 
 /******************************
@@ -46,7 +58,7 @@ nav a {
     padding: 0.5rem;
     font-size: 0.75rem;
 }
-@media (min-width: 500px) {
+@media (min-width: 700px) {
     nav a {
         font-size: 1.5rem;
         padding: 1rem;
@@ -216,9 +228,7 @@ nav a {
 .disziplinen {
     padding: unset;
     margin: unset;
-    /*width: 25%;*/
     height: 400px;
-    /*align-content: center;*/
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -240,9 +250,98 @@ nav a {
     max-width: 100%;
     max-height: 100%;
 }
+
+/******************************
+############################### Ueber Uns
+******************************/
+.Video-Saeule{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    padding: 5rem;
+    /*max-width: 80%;*/
+}
+
+.Video-Saeule video{
+    max-width: 90%;
+}
+
+.decription_disciplines{
+    margin: auto;
+    padding: 5rem;
+    max-width: 2000px;
+}
+
+.decription_disciplines h1{
+    text-align: center;
+}
+
 /******************************
 ############################### News
 ******************************/
+
+.News_Overview {
+    max-width: 1000px;
+    width: 90%;
+    margin: auto;
+    height: auto;
+    }
+
+.News_Overview_Table_Maindiv {
+    max-height: 15rem;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.News_Overview_Table_Image{
+    width: 30%;
+    padding: 1rem;
+}
+
+.News_Overview_Table_Image img {
+    width: 100%;
+    max-height: 100%;
+    height: auto;
+    object-fit: scale-down;
+}
+
+.News_Overview_Table_Details {
+    margin-left: auto;
+    padding: 1rem;
+    float: end;
+    text-decoration: none;
+}
+
+.News_Overview_Table_Headline {
+    padding: 1rem;
+    font-size: larger;
+}
+
+.News_Details_Maindiv {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.News_Details_Description {
+    width: 80%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 10px;
+}
+
+.News_Details_Images {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.News_Details_Images img {
+    width: 80%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 10px;
+}
 
 article{
     overflow: hidden;
@@ -297,7 +396,41 @@ article{
     text-decoration: none;
 }
 
+/******************************
+############################### Events
+******************************/
 
+.Events_Overview_Year {
+    text-align: center;
+}
+
+.Events_Overview_Table {
+    max-width: 1000px;
+    width: 90%;
+    margin: auto;
+    height: auto;
+    /*margin: auto;*/
+    display: flex;
+    flex-direction: row;
+}
+
+.Events_Overview_Date {
+    padding: 1rem;
+    width: 20%;
+}
+
+.Events_Overview_Headline {
+    padding: 1rem;
+}
+
+.Events_Overview_Details {
+    padding: 1rem;
+    margin-left: auto;
+}
+
+.Events_Overview_Details a {
+    text-decoration: none;
+}
 
 /******************************
 ############################### Trainingszeiten
