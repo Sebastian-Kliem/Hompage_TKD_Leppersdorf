@@ -38,7 +38,6 @@ class Home extends Base_Controller
             if (isset($_POST['email'])) {
                 if (Session::logIn($_POST['email'], $_POST['password'])){
                     header('Location: '. \App::getBaseURL());
-
                 }
             } elseif (isset($_POST['register_email'])) {
                $dbQuery = new UsersDBQuery();
@@ -48,9 +47,7 @@ class Home extends Base_Controller
                    echo $this->renderTemplae('login.phtml', ['register' => false]);
                }
             }
-
         }
-
         echo $this->renderTemplae('login.phtml', []);
     }
 

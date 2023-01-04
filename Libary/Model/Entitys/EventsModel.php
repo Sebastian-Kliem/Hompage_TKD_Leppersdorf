@@ -7,7 +7,7 @@ class EventsModel
     private string $date;
     private string $name;
     private string $description = '';
-    private array $documents;
+    private array $documents = [];
     private string $eventYear;
     private string $eventMonth;
     private string $id;

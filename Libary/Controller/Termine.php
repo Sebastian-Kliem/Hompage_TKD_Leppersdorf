@@ -5,7 +5,6 @@ namespace Controller;
 use App;
 use Model\Entitys\EventsModel;
 use Model\Resource\DBQuerys\EventsDBQuery;
-use Session\Session;
 
 class Termine extends Base_Controller
 {
@@ -22,15 +21,14 @@ class Termine extends Base_Controller
             }
 
             $eventModel = new EventsModel($_POST['date'], $_POST['name']);
-            $eventModel->setDescription($_POST['description']);
+            $eventModel->setDescription(nl2br($_POST['description']));
             $eventModel->setDocuments($filesupload['file']);
 
             $eventsDBQuery = new EventsDBQuery();
-            $eventsDBQuery->putNewEvent($eventModel);
-        }
+            $response = $eventsDBQuery->putNewEvent($eventModel);
 
-        $events = new EventsDBQuery();
-        $eventsArray = $events->getEventsNowOrInFuture();
+            header('Location: '. \App::getBaseURL()."termine/overview");
+        }
 
         $canEdit = false;
         if ($_SESSION) {
@@ -39,8 +37,14 @@ class Termine extends Base_Controller
             }
         }
 
+        $events = new EventsDBQuery();
+        $eventsArray = $events->getEventsNowOrInFuture();
 
-        echo $this->renderTemplae('EventsOverview.phtml', ['events' => $eventsArray, 'canEdit' => $canEdit]);
+//        if ($eventsArray == []) {
+//            echo $this->renderTemplae('dbError.phtml', []);
+//        } else {
+            echo $this->renderTemplae('EventsOverview.phtml', ['events' => $eventsArray, 'canEdit' => $canEdit]);
+//        }
     }
 
     public function detailsAction($parameter)
@@ -57,33 +61,10 @@ class Termine extends Base_Controller
         $event = new EventsDBQuery();
         $eventArray = $event->getEventsDetail($parameter['id']);
 
-        echo $this->renderTemplae('EventsDetails.phtml', ['events' => $eventArray, 'canEdit' => $canEdit]);
+        if ($eventArray == null) {
+            echo $this->renderTemplae('dbError.phtml', []);
+        } else {
+            echo $this->renderTemplae('EventsDetails.phtml', ['events' => $eventArray, 'canEdit' => $canEdit]);
+        }
     }
-
-//    private function normalize_files_array(array $files) {
-//
-//        $normalized_array = [];
-//
-//        foreach($files as $index => $file) {
-//
-//            if (!is_array($file['name'])) {
-//                $normalized_array[$index][] = $file;
-//                continue;
-//            }
-//
-//            foreach($file['name'] as $idx => $name) {
-//                $normalized_array[$index][$idx] = [
-//                    'name' => $name,
-//                    'type' => $file['type'][$idx],
-//                    'tmp_name' => $file['tmp_name'][$idx],
-//                    'error' => $file['error'][$idx],
-//                    'size' => $file['size'][$idx]
-//                ];
-//            }
-//
-//        }
-//
-//        return $normalized_array;
-//
-//    }
 }

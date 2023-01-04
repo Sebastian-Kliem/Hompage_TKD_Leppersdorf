@@ -1,12 +1,26 @@
 <?php include("Includes/includesBeforeMain.php"); ?>
 
 <main>
+
+    <?php if ($newsArray == []): ?>
+        <div>
+            <h2>
+                Ein Fehler ist aufgetreten.
+            </h2>
+        </div>
+    <?php endif; ?>
+
     <div class="News_Overview">
         <?php foreach ($newsArray as $news): ?>
             <div class="News_Overview_Table_Maindiv">
                 <div class="News_Overview_Table_Image">
-                <?php if (base64_decode($news->getThumbnailData()) !== "" && $news->getThumbnailName() !== "") { ?>
-                    <img src="data:image/jpg;base64,<?php echo $news->getThumbnailData(); ?>"
+                <?php if (base64_decode($news->getThumbnailData()) !== "" && $news->getThumbnailName() !== "") {
+
+                    $data = base64_decode($news->getThumbnailData());
+                    file_put_contents("temp/" . $news->getThumbnailName(), $data);
+
+                    ?>
+                    <img src="/temp/<?php echo $news->getThumbnailName(); ?>"
                          alt="<?php echo $news->getThumbnailName(); ?>">
                 <?php } ?>
                 </div>
@@ -36,13 +50,13 @@
                     <input type="text" id="headline" name="headline" required><br>
 
                     <label for="description">Beschreibung:</label><br>
-                    <input type="text" id="description" name="description" required><br>
+                    <textarea id="description" name="description" cols="30" rows="5" required></textarea><br>
 
                     <label for="thumbnail">Vorschaubild:</label><br>
                     <input name="files[]" type="file" id="thumbnail" accept="image/jpeg,image/png"><br>
 
                     <label for="files">Dateien:</label><br>
-                    <input name="files[]" type="file" multiple id="files" accept="application/pdf,image/jpeg,image/png"><br>
+                    <input name="files[]" type="file" multiple id="files" accept="image/*"><br>
 
                     <button type="submit">Termin erstellen</button>
 

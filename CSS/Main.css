@@ -24,7 +24,7 @@ a:hover, a:focus {
     color: azure;
 }
 
-h1, h2 {
+h1, h2, h3 {
     text-align: center;
 }
 
@@ -134,6 +134,8 @@ nav a {
 }
 
 .home-disziplinen {
+    /*margin: auto;*/
+    /*max-width: 1200px;*/
     display: flex;
     justify-content: center;
     padding: 1rem;
@@ -300,7 +302,7 @@ nav a {
 }
 
 .News_Overview_Table_Image img {
-    width: 100%;
+    width: 60%;
     max-height: 100%;
     height: auto;
     object-fit: scale-down;
@@ -314,6 +316,7 @@ nav a {
 }
 
 .News_Overview_Table_Headline {
+    width: 60%;
     padding: 1rem;
     font-size: larger;
 }
@@ -344,6 +347,8 @@ nav a {
 }
 
 article{
+    /*max-width: 1000px;*/
+    /*margin: auto;*/
     overflow: hidden;
     /*padding: 1rem;*/
     display: flex;
@@ -432,6 +437,47 @@ article{
     text-decoration: none;
 }
 
+.Events_Formular form {
+    max-width: 1000px;
+    padding: 1rem;
+    margin: auto;
+}
+.Events_Formular label {
+    cursor: pointer;
+}
+
+.Events_Formular textarea, input[type=text]{
+    width: 90%;
+
+}
+
+.Events_Formular textarea, input {
+    margin: 1rem;
+    padding: 0.5rem;
+}
+
+.Events_Formular_Submit {
+    margin: auto;
+    width: max-content;
+}
+
+.Events_Details_Headline {
+    padding: 1rem;
+    text-align: center;
+}
+
+.Events_Details_Decription {
+    padding: 1rem;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.Events_Details_Documents {
+    padding: 1rem;
+    max-width: 1000px;
+    margin: auto;
+}
+
 /******************************
 ############################### Trainingszeiten
 ******************************/
@@ -456,6 +502,8 @@ article{
 }
 
 .Hallen {
+    margin: auto;
+    max-width: 1200px;
     padding: 1rem;
     display: flex;
     justify-content: center;
@@ -487,6 +535,11 @@ article{
     height:100%;
 }
 
+.Info {
+    max-width: 1200px;
+    margin: auto;
+}
+
 .anmeldebogen {
     display: flex;
     flex-direction: column;
@@ -514,6 +567,14 @@ article{
 }
 
 .kontaktdaten p {
+    text-align: center;
+}
+
+/******************************
+############################### DB Error
+******************************/
+
+.DB_Error {
     text-align: center;
 }
 

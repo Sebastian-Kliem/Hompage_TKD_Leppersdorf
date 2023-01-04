@@ -24,49 +24,55 @@ class EventsDBQuery extends Base
             }
 
         } catch (exception $e) {
-            // TODO: Fehler schicker darstellen
-            echo "ein Fehler ist aufgetreten. Bitte versuchen sie es später noch einmal";
+
         }
         return $events;
     }
 
     public function getEventsDetail($id)
     {
-        $this->connectDB();
-        $query = $this->connection->prepare("Select * from Events where Events_id = :id");
-        $query->bindParam(':id', $id);
-        $query->execute();
-
         $event = null;
-        while ($row = $query->fetch(\PDO::FETCH_ASSOC)) {
 
-            $event = new EventsModel($row['EventDate'], $row['EventName']);
+        try {
+            $this->connectDB();
+            $query = $this->connection->prepare("Select * from Events where Events_id = :id");
+            $query->bindParam(':id', $id);
+            $query->execute();
 
-            $event->setId($row['Events_id']);
 
-            if ($row['EventDescription']) {
-                $event->setDescription($row['EventDescription']);
-            }
+            while ($row = $query->fetch(\PDO::FETCH_ASSOC)) {
 
-            $sqlFiles = $this->connection->prepare("Select * from Events_Files 
+                $event = new EventsModel($row['EventDate'], $row['EventName']);
+
+                $event->setId($row['Events_id']);
+
+                if ($row['EventDescription']) {
+                    $event->setDescription($row['EventDescription']);
+                }
+
+                $sqlFiles = $this->connection->prepare("Select * from Events_Files 
                     where Events_foreign_id = :Events_foreign_id; ");
-            $sqlFiles->bindParam(':Events_foreign_id', $id);
-            $sqlFiles->execute();
+                $sqlFiles->bindParam(':Events_foreign_id', $id);
+                $sqlFiles->execute();
 
-            $files = [];
-            while ($rowFiles = $sqlFiles->fetch(\PDO::FETCH_ASSOC)) {
+                $files = [];
+                while ($rowFiles = $sqlFiles->fetch(\PDO::FETCH_ASSOC)) {
 
-                $data = base64_decode($rowFiles['Data']);
+                    $data = base64_decode($rowFiles['Data']);
 
-//                $filepath = "temp/".$rowFiles['Filename'];
-                file_put_contents("temp/".$rowFiles['Filename'], $data,FILE_APPEND);
+                    if ($rowFiles['Filename'] != '') {
+                        file_put_contents("temp/" . $rowFiles['Filename'], $data, FILE_APPEND);
 
-                $files[] = $rowFiles['Filename'];
+                        $files[] = $rowFiles['Filename'];
+                    }
+
+                }
+
+                $event->setDocuments($files);
             }
+        } catch (exception $e) {
 
-            $event->setDocuments($files);
         }
-
             return $event;
     }
 
@@ -76,39 +82,41 @@ class EventsDBQuery extends Base
         $name = $eventModel->getName();
         $description = $eventModel->getDescription();
 
-        $this->connectDB();
-        $query = $this->connection->prepare(
-            "INSERT INTO Events (EventDate, EventName, EventDescription) 
+        try {
+            $this->connectDB();
+            $query = $this->connection->prepare(
+                "INSERT INTO Events (EventDate, EventName, EventDescription) 
                 VALUES (:eventdate,:eventname,:eventdescription)");
 
-        $query->bindParam(':eventdate', $date);
-        $query->bindParam(':eventname', $name);
-        $query->bindParam(':eventdescription', $description);
+            $query->bindParam(':eventdate', $date);
+            $query->bindParam(':eventname', $name);
+            $query->bindParam(':eventdescription', $description);
 
-        $query->execute();
+            $query->execute();
 
-        $newId = $this->connection->lastInsertId();
+            $newId = $this->connection->lastInsertId();
 
-        echo "<br>".$newId."<br>";
-
-        $queryFiles = $this->connection->prepare(
-            "INSERT INTO Events_Files (Filename, Data, Events_foreign_id)
+            $queryFiles = $this->connection->prepare(
+                "INSERT INTO Events_Files (Filename, Data, Events_foreign_id)
                 VALUES (:filename,:data,:key)");
 
-        foreach ($eventModel->getDocuments() as $document) {
-//            echo "<br>-------------------------<br>";
-//            var_dump($document);
-//            echo "<br>-------------------------<br>";
-            $fileDataBase64 = base64_encode(file_get_contents($document['tmp_name']));
+            if ($eventModel->getDocuments() !== []) {
+                foreach ($eventModel->getDocuments() as $document) {
+                    $fileDataBase64 = '';
+                    if ($document['tmp_name'] != '') {
+                        $fileDataBase64 = base64_encode(file_get_contents($document['tmp_name']));
+                    }
 
-            $queryFiles->bindParam(':filename', $document['name']);
-            $queryFiles->bindParam(':data', $fileDataBase64);
-            $queryFiles->bindParam(':key', $newId);
+                    $queryFiles->bindParam(':filename', $document['name']);
+                    $queryFiles->bindParam(':data', $fileDataBase64);
+                    $queryFiles->bindParam(':key', $newId);
 
-            var_dump($queryFiles);
-
-            $queryFiles->execute();
+                    $queryFiles->execute();
+                }
+            }
+        } catch (exception $e) {
+            return false;
         }
-
+        return true;
     }
 }

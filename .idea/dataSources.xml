@@ -8,13 +8,13 @@
       <jdbc-url>jdbc:mysql://localhost:33306/testdatabase</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="DDEV" uuid="9a8bae18-6685-48f9-ae7c-1eaf23617849">
+    <data-source source="LOCAL" name="DDEV" uuid="91cd33c0-7171-4e7e-a4c8-1e74a1f4dc91">
       <driver-ref>mariadb</driver-ref>
       <synchronize>true</synchronize>
       <configured-by-url>true</configured-by-url>
       <remarks>DDEV generated data source</remarks>
       <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mariadb://127.0.0.1:32769/db?user=db&amp;password=db</jdbc-url>
+      <jdbc-url>jdbc:mariadb://127.0.0.1:32770/</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

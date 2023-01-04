@@ -14,10 +14,16 @@ class Base
         $dbPort = "33306";
         $dbName = "TKD_Leppe";
         $dbUser = "TKD_Leppe";
-        $dbPassword = "TKD_Lepp";
+        $dbPassword = "TKD_Leppe";
 
-        if (file_exists('.config.php')) {
-            require_once('.config.php');
+        if (file_exists($_SERVER['DOCUMENT_ROOT']."/.config.php")) {
+            $configs = include($_SERVER['DOCUMENT_ROOT']."/.config.php");
+
+            $dbHost = $configs['dbHost'];
+            $dbPort = $configs['dbPort'];
+            $dbName = $configs['dbName'];
+            $dbUser = $configs['dbUser'];
+            $dbPassword = $configs['dbPassword'];
         }
 
         $dsn = "mysql:host=$dbHost;dbname=$dbName";

@@ -13,6 +13,14 @@
                 </h2>
             </div>
 
+            <?php if ($events == []): ?>
+                <div>
+                    <h2>
+                        Ein Fehler ist aufgetreten.
+                    </h2>
+                </div>
+            <?php endif; ?>
+
             <?php foreach ($events as $event):
                 if ($event->getEventYear() == $thisYear) {
             ?>
@@ -69,22 +77,26 @@
 
         <?php if($canEdit): ?>
 
-        <div>
+        <h3>Neuen Termin erstellen:</h3>
+        <div class="Events_Formular">
             <form method="post" class="event-formular" enctype="multipart/form-data">
 
                 <label for="date">Datum:</label><br>
                 <input type="date" id="date" name="date" required><br>
-
+<!--                <br>-->
                 <label for="name">Name:</label><br>
                 <input type="text" id="name" name="name" required><br>
-
+<!--                <br>-->
                 <label for="description">Beschreibung:</label><br>
-                <input type="text" id="description" name="description" required><br>
-
+                <textarea id="description" name="description" cols="30" rows="5" wrap="soft" required></textarea><br>
+<!--                <br>-->
                 <label for="file1">Dateien:</label><br>
                 <input name="file[]" type="file" multiple id="file1" accept="application/pdf,image/jpeg,image/png"><br>
 
-                <button type="submit">Termin erstellen</button>
+<!--                <button type="submit">Termin erstellen</button>-->
+                <div class="Events_Formular_Submit">
+                    <input type="submit" value="Submit">
+                </div>
 
             </form>
         </div>

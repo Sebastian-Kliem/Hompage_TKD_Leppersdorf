@@ -3,39 +3,45 @@
 <?php $eventFiles = $events->getDocuments() ?>
     <main>
 
-        <div>
+        <div class="Events_Details_Headline">
+            <h2>
+                <?php echo $events->getName() ?>
+            </h2>
+        </div>
+
+        <div class="Events_Details_Decription">
             <?php echo $events->getDescription() ?>
         </div>
 
-        <div>
+        <div class="Events_Details_Documents">
             <h2>Dokumente:</h2>
-            <ol>
+
             <?php foreach ($eventFiles as $file): ?>
 
-            <a href="<?php echo App::getBaseURL()."/". $file ?>"><?php echo $file; ?></a>
+            <a href="<?php echo App::getBaseURL()."temp/". $file ?>"><?php echo $file; ?></a>
             <br>
 
             <?php endforeach; ?>
-            </ol>
+
         </div>
 
-        <?php if($canEdit): ?>
-
-            <div>
-                <form method="post" class="event-formular" enctype="multipart/form-data">
-
-                    <label for="description">Beschreibung:</label><br>
-                    <input type="text" id="description" name="description" required><br>
-
-                    <label for="file1">Beschreibung:</label><br>
-                    <input name="file[]" type="file" multiple id="file1"><br>
-
-                    <button type="submit">submit</button>
-
-                </form>
-            </div>
-
-        <?php endif; ?>
+<!--        --><?php //if($canEdit): ?>
+<!---->
+<!--            <div>-->
+<!--                <form method="post" class="event-formular" enctype="multipart/form-data">-->
+<!---->
+<!--                    <label for="description">Beschreibung:</label><br>-->
+<!--                    <textarea id="description" name="description" cols="30" rows="5" required></textarea><br>-->
+<!---->
+<!--                    <label for="file1">Beschreibung:</label><br>-->
+<!--                    <input name="file[]" type="file" multiple id="file1"><br>-->
+<!---->
+<!--                    <button type="submit">submit</button>-->
+<!---->
+<!--                </form>-->
+<!--            </div>-->
+<!---->
+<!--        --><?php //endif; ?>
 
     </main>
 
