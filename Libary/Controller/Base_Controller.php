@@ -14,9 +14,13 @@ class Base_Controller
 
     public function isPost()
     {
-        if (count($_POST) > 0) {
+        if (count($_POST) > 0 || count($_FILES) > 0) {
             return true;
         }
         return false;
     }
+
+//    Todo: create a filemodel, change the EventFiles.php and NewsFilesModel.php to this
+//    Todo: vrate the function saveFileFromDBtoTemp and use it in Termin-detailsAction and News-detailsAction
+//    protected function saveFileFromDBtoTemp(Filemodel $file)
 }

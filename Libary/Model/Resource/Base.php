@@ -16,8 +16,8 @@ class Base
         $dbUser = "TKD_Leppe";
         $dbPassword = "TKD_Leppe";
 
-        if (file_exists($_SERVER['DOCUMENT_ROOT']."/.config.php")) {
-            $configs = include($_SERVER['DOCUMENT_ROOT']."/.config.php");
+        if (file_exists($_SERVER['DOCUMENT_ROOT']."config.php")) {
+            $configs = include($_SERVER['DOCUMENT_ROOT']."config.php");
 
             $dbHost = $configs['dbHost'];
             $dbPort = $configs['dbPort'];

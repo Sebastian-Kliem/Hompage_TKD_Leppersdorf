@@ -1,47 +1,63 @@
 <?php include("Includes/includesBeforeMain.php"); ?>
 
-<?php $eventFiles = $events->getDocuments() ?>
     <main>
 
         <div class="Events_Details_Headline">
             <h2>
-                <?php echo $events->getName() ?>
+                <?php echo $events['name']; ?>
             </h2>
         </div>
 
+        <div>
+            <h3>
+                <?php echo $events['date']; ?>
+            </h3>
+        </div>
+
+
         <div class="Events_Details_Decription">
-            <?php echo $events->getDescription() ?>
+            <?php echo $events['description']; ?>
         </div>
 
-        <div class="Events_Details_Documents">
-            <h2>Dokumente:</h2>
+        <h2>Dokumente:</h2>
 
-            <?php foreach ($eventFiles as $file): ?>
+        <?php foreach ($events['documents'] as $file): ?>
+            <div class="Events_Details_Documents">
+                <?php
+                    $filename = $file['filename'];
+                    $id = $file['id'];
+                ?>
 
-            <a href="<?php echo App::getBaseURL()."temp/". $file ?>"><?php echo $file; ?></a>
-            <br>
+                <div id="Events_Deatails_Documents_Document">
+                    <a href="<?php echo App::getBaseURL()."temp/". $filename; ?>"><?php echo $filename; ?></a>
+                </div>
+                <?php if($canEdit): ?>
+                    <div id="Events_Deatails_Documents_Delete">
+                        <a href="<?php echo App::getBaseURL() ?>termine/deleteDocument/fileid/<?php echo $id; ?>/eventid/<?php echo $events['eventID']; ?>">löschen</a>
+                    </div>
+                 <?php endif; ?>
+            </div>
+        <?php endforeach; ?>
 
-            <?php endforeach; ?>
 
-        </div>
 
-<!--        --><?php //if($canEdit): ?>
-<!---->
-<!--            <div>-->
-<!--                <form method="post" class="event-formular" enctype="multipart/form-data">-->
-<!---->
-<!--                    <label for="description">Beschreibung:</label><br>-->
-<!--                    <textarea id="description" name="description" cols="30" rows="5" required></textarea><br>-->
-<!---->
-<!--                    <label for="file1">Beschreibung:</label><br>-->
-<!--                    <input name="file[]" type="file" multiple id="file1"><br>-->
-<!---->
-<!--                    <button type="submit">submit</button>-->
-<!---->
-<!--                </form>-->
-<!--            </div>-->
-<!---->
-<!--        --><?php //endif; ?>
+        <?php if($canEdit): ?>
+
+            <hr>
+            <div class="Formular">
+                <form method="post" class="event-formular" enctype="multipart/form-data">
+
+                    <label for="file1">Dateien hinzufügen:</label><br>
+                    <input name="file[]" type="file" multiple id="file1"><br>
+
+                    <div class="Formular_Submit">
+                        <input type="submit" value="Submit">
+                    </div>
+
+                </form>
+            </div>
+
+        <?php endif; ?>
 
     </main>
 

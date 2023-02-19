@@ -24,22 +24,48 @@ a:hover, a:focus {
     color: azure;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
     text-align: center;
+}
+
+.Formular form {
+    max-width: 1000px;
+    padding: 1rem;
+    margin: auto;
+}
+.Formular label {
+    cursor: pointer;
+    margin-left: 1rem;
+}
+
+.Formular textarea, input[type=text],input[type=password],input[type=email]{
+    width: 90%;
+}
+
+.Formular textarea, input {
+    margin: 1rem;
+    padding: 0.5rem;
+}
+
+.Formular_Submit {
+    margin: auto;
+    width: max-content;
 }
 
 /******************************
 ############################### header
 ******************************/
 header {
-    padding-bottom: 1rem;
+    padding: 1rem;
     display: flex;
     justify-content: center;
+    max-width: 350px;
+    margin: auto;
 }
 
 .Logo_Header img {
-    max-height: 120px;
-    width: auto;
+    max-width: 100%;
+    height: auto;
 }
 
 /******************************
@@ -47,9 +73,11 @@ header {
 ******************************/
 
 nav {
+    border-bottom-style: solid;
     display: flex;
     justify-content: center;
     padding-bottom: 1rem;
+    margin-bottom: 1rem;
 }
 
 nav a {
@@ -58,6 +86,13 @@ nav a {
     padding: 0.5rem;
     font-size: 0.75rem;
 }
+@media (max-width: 350px) {
+    nav {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
 @media (min-width: 700px) {
     nav a {
         font-size: 1.5rem;
@@ -72,11 +107,11 @@ nav a {
     display: flex;
     justify-content: center;
     padding-bottom: 1rem;
-    height: 800px;
+    height: auto;
     width: auto;
-    background-image:url("/MediaFiles/Bilder/Home/Home-Main.jpg");
-    background-position: center;
-    background-size: 1400px;
+    background-image:url("/MediaFiles/Bilder/Home/Mainpicture.webp");
+    background-position: top;
+    background-size: contain;
     background-repeat: no-repeat;
 }
 
@@ -134,8 +169,6 @@ nav a {
 }
 
 .home-disziplinen {
-    /*margin: auto;*/
-    /*max-width: 1200px;*/
     display: flex;
     justify-content: center;
     padding: 1rem;
@@ -261,7 +294,6 @@ nav a {
     justify-content: center;
     margin: auto;
     padding: 5rem;
-    /*max-width: 80%;*/
 }
 
 .Video-Saeule video{
@@ -286,26 +318,42 @@ nav a {
     max-width: 1000px;
     width: 90%;
     margin: auto;
-    height: auto;
     }
 
 .News_Overview_Table_Maindiv {
-    max-height: 15rem;
+    /*max-height: 15rem;*/
     margin: auto;
+    height: auto;
     display: flex;
     flex-direction: row;
+}
+@media (max-width: 576px) {
+    .News_Overview_Table_Maindiv {
+        flex-direction: column;
+        justify-content: center;
+    }
 }
 
 .News_Overview_Table_Image{
     width: 30%;
     padding: 1rem;
+    display: flex;
+    justify-content: center;
+}
+@media (max-width: 576px) {
+    .News_Overview_Table_Image {
+        width: auto;
+        margin: auto;
+        max-height: 100px;
+    }
 }
 
 .News_Overview_Table_Image img {
     width: 60%;
-    max-height: 100%;
     height: auto;
     object-fit: scale-down;
+
+
 }
 
 .News_Overview_Table_Details {
@@ -314,11 +362,27 @@ nav a {
     float: end;
     text-decoration: none;
 }
+@media (max-width: 576px) {
+    .News_Overview_Table_Details {
+        margin: auto;
+    }
+}
 
 .News_Overview_Table_Headline {
     width: 60%;
     padding: 1rem;
     font-size: larger;
+}
+@media (max-width: 576px) {
+    .News_Overview_Table_Headline {
+        margin: auto;
+        text-align: center;
+    }
+}
+
+#News_Overview_Delete{
+    margin-left: auto;
+    padding: 1rem;
 }
 
 .News_Details_Maindiv {
@@ -346,59 +410,8 @@ nav a {
     padding: 10px;
 }
 
-article{
-    /*max-width: 1000px;*/
-    /*margin: auto;*/
-    overflow: hidden;
-    /*padding: 1rem;*/
-    display: flex;
-    justify-content: center;
-    height: auto;
-}
-
-.News_Image {
-    display: flex;
-    justify-content: right;
-    /*padding: 1rem;*/
-    margin: 1rem;
-    max-height: 200px;
-    width: 35%;
-}
-
-.News_Image img {
-    object-fit: contain;
-    width:100%;
-    height:100%;
-}
-
-.News_Text {
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    max-height: 200px;
-    width: 65%;
-    height: auto;
-    margin-bottom: 1rem;
-}
-.News_Text h1{
-    font-size: 3vw;
-}
-.News_Text p{
-    font-size: 2vw;
-}
-
-
-.News_Text a {
-    width: max-content;
-    height: auto;
-    overflow: hidden;
-    background: #fec303;
-    color: black;
-    font-size: 1.5rem;
-    font-weight: bold;
-    /*padding: 1rem;*/
-    margin-top: 1rem;
-    text-decoration: none;
+#News_Deatails_Documents_Delete{
+    text-align: center;
 }
 
 /******************************
@@ -409,12 +422,18 @@ article{
     text-align: center;
 }
 
+.Events_Overview {
+    max-width: 1000px;
+    width: 90%;
+    margin: auto;
+    height: auto;
+}
+
 .Events_Overview_Table {
     max-width: 1000px;
     width: 90%;
     margin: auto;
     height: auto;
-    /*margin: auto;*/
     display: flex;
     flex-direction: row;
 }
@@ -437,28 +456,10 @@ article{
     text-decoration: none;
 }
 
-.Events_Formular form {
-    max-width: 1000px;
+#Events_Overview_Delete {
     padding: 1rem;
-    margin: auto;
-}
-.Events_Formular label {
-    cursor: pointer;
-}
-
-.Events_Formular textarea, input[type=text]{
-    width: 90%;
-
-}
-
-.Events_Formular textarea, input {
-    margin: 1rem;
-    padding: 0.5rem;
-}
-
-.Events_Formular_Submit {
-    margin: auto;
     width: max-content;
+    margin: 0;
 }
 
 .Events_Details_Headline {
@@ -476,20 +477,34 @@ article{
     padding: 1rem;
     max-width: 1000px;
     margin: auto;
+    display: flex;
 }
 
+#Events_Deatails_Documents_Document {
+    margin-right: auto;
+    padding: 1rem;
+}
+
+#Events_Deatails_Documents_Delete {
+    margin-left: auto;
+    padding: 1rem;
+}
 /******************************
 ############################### Trainingszeiten
 ******************************/
 
+#trainingszeiten-achtung {
+    padding-top: 1rem;
+}
+
 .table {
+    width: 100%;
     padding: 1rem;
     display: flex;
     justify-content: center;
 }
 
 .table th, td {
-    /*width: 100%;*/
     border-style: solid;
     border-width: 0.1rem;
     border-color: #ffcc00;
@@ -579,9 +594,9 @@ article{
 }
 
 /******************************
-############################### Datenschutzerklärung
+############################### Datenschutzerklärung / Impressum
 ******************************/
-.Datenschutzerklaerung {
+.Datenschutzerklaerung, .Impressum {
     padding: 2rem;
     display: flex;
     justify-content: center;
@@ -589,13 +604,19 @@ article{
 }
 
 /******************************
-############################### Datenschutzerklärung
+############################### login
 ******************************/
-.Impressum {
-    padding: 2rem;
+
+.Login{
     display: flex;
     justify-content: center;
+    padding: 2rem;
     flex-direction: column;
+    max-width: 500px;
+    margin: auto;
+}
+.Form_Input_Field{
+    padding: 1rem;
 }
 
 /******************************
@@ -606,6 +627,7 @@ footer {
     padding: 1rem;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 footer a {

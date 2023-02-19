@@ -3,6 +3,7 @@
 namespace Model\Resource\DBQuerys;
 
 use Exception;
+use Model\Entitys\EventsFiles;
 use Model\Entitys\EventsModel;
 use Model\Resource\Base;
 
@@ -58,14 +59,13 @@ class EventsDBQuery extends Base
                 $files = [];
                 while ($rowFiles = $sqlFiles->fetch(\PDO::FETCH_ASSOC)) {
 
-                    $data = base64_decode($rowFiles['Data']);
+                    $file = new EventsFiles;
+                    $file->setId($rowFiles['Events_Files_id']);
+                    $file->setFilename($rowFiles['Filename']);
+                    $file->setData($rowFiles['Data']);
+                    $file->setEventId($rowFiles['Events_foreign_id']);
 
-                    if ($rowFiles['Filename'] != '') {
-                        file_put_contents("temp/" . $rowFiles['Filename'], $data, FILE_APPEND);
-
-                        $files[] = $rowFiles['Filename'];
-                    }
-
+                    $files[] = $file;
                 }
 
                 $event->setDocuments($files);
@@ -73,7 +73,7 @@ class EventsDBQuery extends Base
         } catch (exception $e) {
 
         }
-            return $event;
+        return $event;
     }
 
     public function putNewEvent(EventsModel $eventModel)
@@ -114,6 +114,68 @@ class EventsDBQuery extends Base
                     $queryFiles->execute();
                 }
             }
+        } catch (exception $e) {
+            return false;
+        }
+        return true;
+    }
+
+    public function deleteEvent($id): bool
+    {
+
+        try {
+            $this->connectDB();
+
+            $queryDetails = $this->connection->prepare("delete from Events_Files where Events_foreign_id = :id ");
+            $queryDetails->bindParam(':id', $id);
+            $queryDetails->execute();
+
+            $queryOverview = $this->connection->prepare("delete from Events where Events_id = :id ");
+            $queryOverview->bindParam(':id', $id);
+            $queryOverview->execute();
+        } catch (exception $e) {
+            return false;
+        }
+        return true;
+    }
+
+    public function deleteDocument($id): bool
+    {
+        try {
+            $this->connectDB();
+
+            $queryDetails = $this->connection->prepare("delete from Events_Files where Events_Files_id = :id ");
+            $queryDetails->bindParam(':id', $id);
+            $queryDetails->execute();
+        } catch (exception $e) {
+            return false;
+        }
+        return true;
+    }
+
+    public function putNewEventDocuments(array $eventFilesModels) :bool
+    {
+        try {
+            $this->connectDB();
+
+            $queryFiles = $this->connection->prepare(
+                "INSERT INTO Events_Files (Filename, Data, Events_foreign_id)
+                    VALUES (:filename,:data,:key)");
+
+            foreach ($eventFilesModels as $eventFilesModel) {
+
+                $filename = $eventFilesModel->getFilename();
+                $data = $eventFilesModel->getData();
+                $key = $eventFilesModel->getEventId();
+
+
+                $queryFiles->bindParam(':filename', $filename);
+                $queryFiles->bindParam(':data', $data);
+                $queryFiles->bindParam(':key', $key);
+
+                $queryFiles->execute();
+            }
+
         } catch (exception $e) {
             return false;
         }

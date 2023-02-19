@@ -4,8 +4,9 @@
         <div>
             <h1>Terminkalender</h1>
         </div>
+        <br>
 
-        <div>
+        <div <div class="Events_Overview">
             <div class="Events_Overview_Year">
                 <h2>
                     <?php $thisYear = date("Y");
@@ -13,13 +14,17 @@
                 </h2>
             </div>
 
-            <?php if ($events == []): ?>
+            <?php
+                if ($events == []):
+            ?>
                 <div>
                     <h2>
                         Ein Fehler ist aufgetreten.
                     </h2>
                 </div>
-            <?php endif; ?>
+            <?php
+                endif;
+            ?>
 
             <?php foreach ($events as $event):
                 if ($event->getEventYear() == $thisYear) {
@@ -37,6 +42,13 @@
                     <div class="Events_Overview_Details">
                         <a href="<?php echo App::getBaseURL() ?>termine/details/id/<?php echo $event->getId() ?>">Details</a>
                     </div>
+
+                    <?php if($canEdit): ?>
+                        <div id="Events_Overview_Delete">
+                            <a href="<?php echo App::getBaseURL() ?>termine/delete/id/<?php echo $event->getId() ?>">löschen</a>
+                        </div>
+                    <?php endif; ?>
+
                 </div>
                 <hr>
 
@@ -44,7 +56,9 @@
 
         </div>
 
-        <div>
+        <br>
+
+        <div class="Events_Overview">
             <div class="Events_Overview_Year">
                 <h2>
                     <?php $nextYear = date("Y") +1;
@@ -68,6 +82,14 @@
                     <div class="Events_Overview_Details">
                         <a href="<?php echo App::getBaseURL() ?>termine/details/id/<?php echo $event->getId() ?>">Details</a>
                     </div>
+
+                    <?php if($canEdit): ?>
+                        <div id="Events_Overview_Delete">
+                            <a href="<?php echo App::getBaseURL() ?>termine/delete/id/<?php echo $event->getId() ?>">löschen</a>
+                        </div>
+                    <?php endif; ?>
+
+
                 </div>
                 <hr>
 
@@ -78,23 +100,22 @@
         <?php if($canEdit): ?>
 
         <h3>Neuen Termin erstellen:</h3>
-        <div class="Events_Formular">
+        <div class="Formular">
             <form method="post" class="event-formular" enctype="multipart/form-data">
 
                 <label for="date">Datum:</label><br>
                 <input type="date" id="date" name="date" required><br>
-<!--                <br>-->
+
                 <label for="name">Name:</label><br>
                 <input type="text" id="name" name="name" required><br>
-<!--                <br>-->
+
                 <label for="description">Beschreibung:</label><br>
                 <textarea id="description" name="description" cols="30" rows="5" wrap="soft" required></textarea><br>
-<!--                <br>-->
+
                 <label for="file1">Dateien:</label><br>
                 <input name="file[]" type="file" multiple id="file1" accept="application/pdf,image/jpeg,image/png"><br>
 
-<!--                <button type="submit">Termin erstellen</button>-->
-                <div class="Events_Formular_Submit">
+                <div class="Formular_Submit">
                     <input type="submit" value="Submit">
                 </div>
 

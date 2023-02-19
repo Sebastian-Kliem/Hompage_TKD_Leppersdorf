@@ -1,58 +1,61 @@
 <?php include("Includes/includesBeforeMain.php"); ?>
 
 <main>
+    <div id="login-status">
+        <?php if (isset($register)) {
+            if ($register) : ?>
+                <p>Registrierung erfolgreich.<br>
+                    Bitte loggen sie sich ein.</p>
+            <?php else : ?>
+                <p>Bei der registrierung ist ein Fehler aufgetreten.<br>
+                    Bitte versuchen sie es erneut</p>
+            <?php endif; ?>
+        <?php } ?>
 
-    <?php if (isset($register)) {
-        if ($register) : ?>
-            <p>Registrierung erfolgreich.<br>
-                Bitte loggen sie sich ein.</p>
-        <?php else : ?>
-            <p>Bei der registrierung ist ein Fehler aufgetreten.<br>
-                Bitte versuchen sie es erneut</p>
-        <?php endif; ?>
-    <?php } ?>
+        <?php if (isset($logout)) {
+            if ($logout) : ?>
+                <p>Ausloggen erfolgreich.</p>
+            <?php endif; ?>
+        <?php } ?>
+    </div>
 
-    <?php if (isset($logout)) {
-        if ($logout) : ?>
-            <p>Ausloggen erfolgreich.</p>
-        <?php endif; ?>
-    <?php } ?>
-
-    <div class="Login">
+    <div class="Formular">
+        <h2>Login:</h2>
         <form method="post" class="login-formular" >
 
-            <label for="email">E-Mail:
+            <label for="email">E-Mail:<br>
                 <input type="email" name="email">
             </label>
 
-            <label for="password">Passwort:
+            <label for="password">Passwort:<br>
                 <input type="password" name="password">
             </label>
 
-            <input type="submit" value="Log In">
-
+            <div class="Formular_Submit">
+                <input type="submit" value="Login">
+            </div>
         </form>
-
-
-
     </div>
 
-    <div class="Login">
+    <div class="Formular">
+        <h2>Registrieren:</h2>
         <form method="post" class="register-formular" >
 
-            <label for="register_email">E-Mail:
+            <label for="register_email">E-Mail: <br>
                 <input type="email" name="register_email">
             </label>
 
-            <label for="register_username">Benutzername:
+            <label for="register_username">Benutzername:<br>
                 <input type="text" name="register_username">
             </label>
 
-            <label for="register_password">Passwort:
+            <label for="register_password">Passwort:<br>
                 <input type="password" name="register_password">
             </label>
 
-            <input type="submit" value="Log In">
+            <div class="Formular_Submit">
+                <input type="submit" value="Registrieren">
+            </div>
 
         </form>
     </div>

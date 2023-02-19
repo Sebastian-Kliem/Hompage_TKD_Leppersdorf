@@ -1,1 +1,4 @@
-test.config.php
+/config.php
+/.ddev/*
+/vendor/*
+/docker/*

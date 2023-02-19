@@ -33,8 +33,13 @@
                 <a href="<?php echo App::getBaseURL(); ?>news/details/id/<?php echo $news->getId(); ?>">Weiterlesen</a>
                 </div>
 
-            </div>
+                <?php if($canEdit): ?>
+                    <div id="News_Overview_Delete">
+                        <a href="<?php echo App::getBaseURL() ?>news/delete/id/<?php echo $news->getId(); ?>">löschen</a>
+                    </div>
+                <?php endif; ?>
 
+            </div>
             <hr>
 
         <?php endforeach; ?>
@@ -43,7 +48,11 @@
 
     <?php if($canEdit): ?>
 
-            <div>
+            <h2>
+                Neue News erstellen:
+            </h2>
+
+            <div class="Formular">
                 <form method="post" class="new-news-formular" enctype="multipart/form-data">
 
                     <label for="headline">Überschrift:</label><br>
@@ -58,7 +67,9 @@
                     <label for="files">Dateien:</label><br>
                     <input name="files[]" type="file" multiple id="files" accept="image/*"><br>
 
-                    <button type="submit">Termin erstellen</button>
+                    <div class="Formular_Submit">
+                        <button type="submit">Termin erstellen</button>
+                    </div>
 
                 </form>
             </div>

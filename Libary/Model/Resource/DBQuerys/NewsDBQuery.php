@@ -4,6 +4,7 @@ namespace Model\Resource\DBQuerys;
 
 use Exception;
 use Model\Entitys\EventsModel;
+use Model\Entitys\NewsFilesModel;
 use Model\Entitys\NewsModel;
 use Model\Resource\Base;
 
@@ -58,19 +59,31 @@ class NewsDBQuery extends Base
 
                 $news->setId($row['id']);
 
-                $sqlFiles = $this->connection->prepare("Select * from NewsMediaFiles 
+                $sqlFiles = $this->connection->prepare(
+                    "Select * from NewsMediaFiles 
                     where foreign_key_news = :Events_foreign_id; ");
+
                 $sqlFiles->bindParam(':Events_foreign_id', $id);
                 $sqlFiles->execute();
 
                 $files = [];
                 while ($rowFiles = $sqlFiles->fetch(\PDO::FETCH_ASSOC)) {
                     if ($rowFiles['FileData']) {
-                        $data = base64_decode($rowFiles['FileData']);
 
-                        file_put_contents("temp/".$rowFiles['Filename'], $data,FILE_APPEND);
+                        $file = new NewsFilesModel();
+                        $file->setId($rowFiles['id']);
+                        $file->setFilename($rowFiles['Filename']);
+                        $file->setData($rowFiles['FileData']);
+                        $file->setNewsId($rowFiles['foreign_key_news']);
 
-                        $files[] = $rowFiles['Filename'];
+
+//                        $data = base64_decode($rowFiles['FileData']);
+//
+//                        file_put_contents("temp/".$rowFiles['Filename'], $data,FILE_APPEND);
+//
+//                        $files[] = $rowFiles['Filename'];
+
+                        $files[] = $file;
                     }
                 }
 
@@ -140,4 +153,67 @@ class NewsDBQuery extends Base
         }
         return true;
     }
+
+    public function deleteNews($id): bool
+    {
+        try {
+            $this->connectDB();
+
+            $queryDetails = $this->connection->prepare("delete from NewsMediaFiles where foreign_key_news = :id ");
+            $queryDetails->bindParam(':id', $id);
+            $queryDetails->execute();
+
+            $queryOverview = $this->connection->prepare("delete from News where id = :id ");
+            $queryOverview->bindParam(':id', $id);
+            $queryOverview->execute();
+        } catch (exception $e) {
+            var_dump($e);
+            return false;
+        }
+        return true;
+    }
+
+    public function deleteDocument($id): bool
+    {
+        try {
+            $this->connectDB();
+
+            $queryDetails = $this->connection->prepare("delete from NewsMediaFiles where id = :id ");
+            $queryDetails->bindParam(':id', $id);
+            $queryDetails->execute();
+        } catch (exception $e) {
+            return false;
+        }
+        return true;
+    }
+
+    public function putNewEventDocuments(array $newsFilesModels) :bool
+    {
+        try {
+            $this->connectDB();
+
+            $queryFiles = $this->connection->prepare(
+                "INSERT INTO NewsMediaFiles (Filename, FileData, foreign_key_news)
+                    VALUES (:filename,:data,:key)");
+
+            foreach ($newsFilesModels as $newsFilesModel) {
+
+                $filename = $newsFilesModel->getFilename();
+                $data = $newsFilesModel->getData();
+                $key = $newsFilesModel->getNewsId();
+
+
+                $queryFiles->bindParam(':filename', $filename);
+                $queryFiles->bindParam(':data', $data);
+                $queryFiles->bindParam(':key', $key);
+
+                $queryFiles->execute();
+            }
+
+        } catch (exception $e) {
+            return false;
+        }
+        return true;
+    }
+
 }

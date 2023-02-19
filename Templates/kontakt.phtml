@@ -1,6 +1,35 @@
 <?php include("Includes/includesBeforeMain.php"); ?>
 
 <main>
+    <?php
+        if (array_key_exists('sendMailResponse', $sendMailParameter) && $sendMailParameter["sendMailResponse"] == "true"):
+    ?>
+        <div class="Kontakt_Email_Success">
+            <hr>
+            <h2>
+                Die E-Mail wurde erfolgreich versendet.
+            </h2>
+            <hr>
+        </div>
+    <?php
+        endif;
+    ?>
+
+    <?php
+        if (array_key_exists('sendMailResponse', $sendMailParameter) && $sendMailParameter["sendMailResponse"] == "false"):
+    ?>
+        <div class="Kontakt_Email_Success">
+            <hr>
+            <h2>
+                Beim Versand der E-Mail ist ein Fehler aufgetreten.<br>
+                Bitte versuchen sie es erneut.
+            </h2>
+            <hr>
+        </div>
+    <?php
+        endif;
+    ?>
+
     <div class="Motto">
         <h1>Was immer du willst - du kannst es erreichen!</h1>
     </div>
@@ -8,7 +37,7 @@
     <div class="Map">
         <h2>Turnhalle Leppersdorf</h2>
         <p>August-Bebel-Straße 14 b, 01454 Wachau</p>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1251.3310233454408!2d13.961595313201473!3d51.15158292560227!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4709b57202f7e819%3A0x2e6cdd88c4e59d65!2sDRK%20Kindertagesst%C3%A4tte%20Sonnenschein%20Leppersdorf!5e0!3m2!1sde!2sde!4v1661106632539!5m2!1sde!2sde" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d788.2879211630365!2d13.961732503410534!3d51.151662709472085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4709b5a68d67f5e5%3A0x6cdab17ad961c7e7!2sTaekwondo%20Allkampf%20Leppersdorf%20-%20Kampfsportverein%20-%20Selbstverteidigung!5e0!3m2!1sde!2sde!4v1676821460183!5m2!1sde!2sde" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 
     <div class="Map">
@@ -29,31 +58,69 @@
         </p>
     </div>
 
-<!--    <h3>-->
-<!--        Oder schreiben sie uns über das Kontaktformular:-->
-<!--    </h3>-->
+    <h3>
+        Oder schreiben sie uns über das Kontaktformular:
+    </h3>
 
-<!--    <div>-->
-<!--        <form method="post" class="contact-formular">-->
-<!---->
-<!---->
-<!--            <label for="name">Ihr Name:</label><br>-->
-<!--            <input type="text" id="name" name="name" required><br>-->
-<!---->
-<!--            <label for="email">Ihre E-Mail-Adresse:</label><br>-->
-<!--            <input type="email" id="email" name="email" required><br>-->
-<!---->
-<!--            <label for="message">Ihre Nachricht:</label><br>-->
-<!--            <textarea id="message" name="message" cols="30" rows="5" wrap="off" required></textarea><br>-->
-<!---->
-<!--            <button type="submit">Nachricht senden.</button>-->
-<!---->
-<!--        </form>-->
-<!--    </div>-->
+    <div class="Formular">
+        <form method="post" class="contact-formular">
 
+            <label for="name">Ihr Name:</label><br>
+            <input type="text" id="name" name="name"
+                <?php
+                if (isset($_SESSION)) {
+                    if (array_key_exists('contactform', $_SESSION)){
+                        if (array_key_exists('name', $_SESSION['contactform'])) {
+                            if ($sendMailParameter["sendMailResponse"] == "false") {
+                                echo "value=\"" . $_SESSION['contactform']["name"] . "\"";
+                            }
+                        }
+                    }
+                }
+                ?>
+                   required><br>
+
+            <label for="email">Ihre E-Mail-Adresse:</label><br>
+            <input type="email" id="email" name="email"
+                <?php
+                    if (isset($_SESSION)) {
+                        if (array_key_exists('contactform', $_SESSION)) {
+                            if (array_key_exists('email', $_SESSION['contactform'])) {
+                                if ($sendMailParameter["sendMailResponse"] == "false") {
+                                    echo "value=\"" . $_SESSION['contactform']["email"] . "\"";
+                                }
+                            }
+                        }
+                    }
+                ?>
+                   required><br>
+
+            <label for="message">Ihre Nachricht:</label><br>
+            <textarea id="message" name="message" cols="30" rows="5" wrap="hard"
+                    required>
+                <?php
+                    if (isset($_SESSION)) {
+                        if (array_key_exists('contactform', $_SESSION)) {
+                            if (array_key_exists('massage', $_SESSION['contactform'])) {
+                                if ($sendMailParameter["sendMailResponse"] == "false") {
+                                    echo $_SESSION['contactform']["massage"];
+                                }
+                            }
+                        }
+                    }
+
+
+                ?>
+            </textarea>
+
+            <br>
+
+            <div class="Formular_Submit">
+                <button type="submit">Nachricht senden.</button>
+            </div>
+
+        </form>
+    </div>
 </main>
-
-
-
 
 <?php include("Includes/includesAfterMain.php"); ?>

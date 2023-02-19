@@ -4,22 +4,15 @@ class App
 {
     public static function getBaseURL(): string
     {
-//        if (file_exists($_SERVER['DOCUMENT_ROOT']."/.config.php")) {
-//            $configs = include($_SERVER['DOCUMENT_ROOT']."/.config.php");
-//            return $configs['baseURL'];
-//        } else {
+        if (file_exists($_SERVER['DOCUMENT_ROOT']."/config.php")) {
+            $configs = include($_SERVER['DOCUMENT_ROOT'] . "/config.php");
+            return $configs['baseURL'];
+        }elseif (file_exists($_SERVER['DOCUMENT_ROOT']."/config.php")) {
+            $configs = include($_SERVER['DOCUMENT_ROOT'] . "/config.php");
+            return $configs['baseURL'];
+        } else {
             return "https://homepageleppe.ddev.site/";
-//        }
-
-
-//        if (file_exists($_SERVER['DOCUMENT_ROOT']."/.config.php")) {
-////            require_once($_SERVER['DOCUMENT_ROOT']."/.config.php");
-//            return "https://taekwondo-allkampf-leppersdorf.de/";
-//
-//        } else {
-////            echo  "https://homepageleppe.ddev.site/";
-//            return "https://homepageleppe.ddev.site/";
-//        }
+        }
     }
 
     public static function normalize_Postfiles_array(array $files): array
