@@ -2,3 +2,4 @@
 /.ddev/*
 /vendor/*
 /docker/*
+/docker
