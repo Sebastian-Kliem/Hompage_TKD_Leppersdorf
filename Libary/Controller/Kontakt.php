@@ -27,6 +27,7 @@ class Kontakt extends Base_Controller
         }
 
         if ($this->isPost()) {
+
             require_once "vendor/autoload.php";
 
             $messageWithHTML = "Name des Absenders: " . $_POST['name'] . "<br>
@@ -41,6 +42,8 @@ class Kontakt extends Base_Controller
 
             $mail->isSMTP();
             $mail->SMTPAuth = true;
+            $mail->CharSet   = 'UTF-8';
+            $mail->Encoding  = 'base64';
 
             $mail->Host       = $configs['host'];
             $mail->Port       = $configs['port'];
