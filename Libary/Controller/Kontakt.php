@@ -59,7 +59,14 @@ class Kontakt extends Base_Controller
             $mail->addReplyTo($configs['reply']);
 
             $mail->isHTML(true);
-            $mail->Subject = 'neue Anfrage per Kontaktformular von Website';
+
+            if (strpos($_POST['message'], "http") || strpos($_POST['message'], "https")) {
+                $mail->Subject = 'Spam über Kontaktformular';
+                }
+            else {
+                $mail->Subject = 'neue Anfrage per Kontaktformular von Website';
+            }
+
             $mail->Body    = $messageWithHTML;
             $mail->AltBody = $messageWithOutHTML;
 
