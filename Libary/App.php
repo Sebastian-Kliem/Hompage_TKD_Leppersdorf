@@ -11,7 +11,7 @@ class App
             $configs = include($_SERVER['DOCUMENT_ROOT'] . "/config.php");
             return $configs['baseURL'];
         } else {
-            return "https://homepageleppe.ddev.site/";
+            return "https://tkd-leppe.ddev.site/";
         }
     }
 
