@@ -60,9 +60,10 @@ class Kontakt extends Base_Controller
 
             $mail->isHTML(true);
 
-            if (strpos($_POST['message'], "http") || strpos($_POST['message'], "https")) {
+            $message = $_POST['message'];
+            if ($this->containsUrl($message)) {
                 $mail->Subject = 'Spam über Kontaktformular';
-                }
+            }
             else {
                 $mail->Subject = 'neue Anfrage per Kontaktformular von Website';
             }
@@ -91,5 +92,17 @@ class Kontakt extends Base_Controller
         }
 
         echo $this->renderTemplae('kontakt.phtml', ['sendMailParameter' => $sendMailParameter]);
+    }
+
+    private function containsUrl($string) {
+        // Regular expression pattern to match URLs
+        $pattern = '/\b(?:https?:\/\/|www\.)\S+\b/i';
+
+        // Check if the string contains a URL
+        if (preg_match($pattern, $string)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
