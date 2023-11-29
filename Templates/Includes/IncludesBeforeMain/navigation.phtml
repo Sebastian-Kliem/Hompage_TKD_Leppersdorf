@@ -1,10 +1,18 @@
 
 <nav>
     <div><a href="<?php echo App::getBaseURL() ?>home/home">Startseite</a></div>
-    <div><a href="<?php echo App::getBaseURL() ?>ueberuns/ueberuns">Über uns</a></div>
-    <div><a href="<?php echo App::getBaseURL() ?>trainingszeiten/trainingszeiten">Trainingzeiten</a></div>
+    <div class="menu-item">
+        <a href="#">Infos</a>
+        <div class="submenu">
+            <a href="<?php echo App::getBaseURL() ?>ueberuns/ueberuns">Über uns</a>
+            <a href="<?php echo App::getBaseURL() ?>trainingszeiten/trainingszeiten">Trainingzeiten</a>
+            <a href="<?php echo App::getBaseURL() ?>termine/overview">Termine</a>
+        </div>
+    </div>
+<!--    <div><a href="--><?php //echo App::getBaseURL() ?><!--ueberuns/ueberuns">Über uns</a></div>-->
+<!--    <div><a href="--><?php //echo App::getBaseURL() ?><!--trainingszeiten/trainingszeiten">Trainingzeiten</a></div>-->
     <div><a href="<?php echo App::getBaseURL() ?>news/overview">News</a></div>
-    <div><a href="<?php echo App::getBaseURL() ?>termine/overview">Termine</a></div>
+
     <div><a href="<?php echo App::getBaseURL() ?>kontakt/kontakt">Kontakt</a></div>
 </nav>
 
