@@ -252,16 +252,16 @@ nav a {
     }
 }
 .home-disziplin-schattenkampf {
-    background-image: url("/MediaFiles/Bilder/Home/Formen.jpg");
+    background-image: url("/MediaFiles/Bilder/Home/Formen.webp");
 }
 .home-disziplin-wettkampf {
-    background-image: url("/MediaFiles/Bilder/Home/Wettkampf.jpg");
+    background-image: url("/MediaFiles/Bilder/Home/Wettkampf.webp");
 }
 .home-disziplin-workout {
-    background-image: url("/MediaFiles/Bilder/Home/Workout.jpg");
+    background-image: url("/MediaFiles/Bilder/Home/Workout.webp");
 }
 .home-disziplin-selbstvereidigung {
-    background-image: url("/MediaFiles/Bilder/Home/Selbsverteidigung.jpg");
+    background-image: url("/MediaFiles/Bilder/Home/Selbsverteidigung.webp");
 }
 
 .disziplinen {
