@@ -78,20 +78,35 @@ nav {
     justify-content: center;
     padding-bottom: 1rem;
     margin-bottom: 1rem;
+    height: auto;
 }
 
 nav a {
     color: #fec303;
     font-weight: bold;
     padding: 0.5rem;
-    font-size: 0.75rem;
+    font-size: 1rem;
     white-space: nowrap;
+    height: auto;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
     nav {
         flex-direction: column;
         text-align: center;
+        height: auto;
+    }
+    nav a {
+        padding: 3rem;
+    }
+    nav div {
+        width: 100%; /* Stellt sicher, dass die div die volle Breite einnimmt */
+    }
+    nav div a {
+        display: inline-block;
+        padding: 0.25rem; /* Setzt das Padding für alle Links */
+        width: auto; /* Stellt sicher, dass das Padding sichtbar ist */
+        box-sizing: content-box; /* Stellt sicher, dass Padding und Border nicht in die Breite einberechnet werden */
     }
 }
 
@@ -106,16 +121,15 @@ nav .submenu {
     z-index: 1000;
     display: none;
     position: absolute; /* Damit das Submenü über anderen Inhalten erscheint */
-    background-color: rgb(128, 128, 128); /* Hintergrundfarbe des Submenüs */
+    background-color: black; /* Hintergrundfarbe des Submenüs */
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Optional: Schatten für das Submenü */
-    /*z-index: 1; !* Stellt sicher, dass das Submenü über anderen Elementen angezeigt wird *!*/
 }
 
 nav .submenu a {
     color: #fec303;
     font-weight: bold;
     padding: 0.5rem;
-    font-size: 1rem;
+    font-size: 1.5rem;
     white-space: nowrap;
 
     text-decoration: none; /* Entfernt die Unterstreichung der Links */
@@ -123,7 +137,7 @@ nav .submenu a {
 }
 
 nav .submenu a:hover {
-    background-color: #f1f1f1; /* Hintergrundfarbe beim Hover */
+    background-color: black; /* Hintergrundfarbe beim Hover */
 }
 
 /* CSS für die Hover-Funktion, um das Submenü anzuzeigen */
@@ -131,22 +145,26 @@ nav div:hover .submenu {
     display: block;
 }
 
-
-/* Styling für Mobilgeräte */
-/*@media screen and (max-width: 600px) {*/
-/*    nav div:hover .submenu {*/
-/*        display: none;*/
-/*    }*/
-/*}*/
 @media screen and (max-width: 600px) {
     nav .submenu {
         position: static; /* Submenü in den normalen Fluss einfügen */
-        background-color: #e0e0e0; /* Leicht abweichende Hintergrundfarbe für Submenü */
+        background-color: black; /* Leicht abweichende Hintergrundfarbe für Submenü */
     }
 
     nav .submenu a {
-        padding-left: 20px; /* Leichter Einzug für Submenü-Links */
+        font-size: 0.75rem;
+
+        padding: 0.25rem; /* Setzt das Padding für alle Links */
     }
+    nav div:hover .submenu {
+        display: none;
+    }
+    /*nav div a {*/
+    /*    display: inline-block;*/
+    /*    padding: 0.25rem; !* Setzt das Padding für alle Links *!*/
+    /*    width: auto; !* Stellt sicher, dass das Padding sichtbar ist *!*/
+    /*    box-sizing: content-box; !* Stellt sicher, dass Padding und Border nicht in die Breite einberechnet werden *!*/
+    /*}*/
 }
 
 /******************************
