@@ -1,7 +1,4 @@
 /config.php
-/.ddev/*
-/.ddev
+
 /vendor/*
 /vendor
-/docker/*
-/docker
