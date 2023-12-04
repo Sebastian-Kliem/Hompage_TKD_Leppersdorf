@@ -39,21 +39,24 @@ class Bootstrap
     {
         $ctrl = sprintf("\\Controller\\%s", ucfirst(strtolower($controller)));
         if (!class_exists($ctrl)) {
-            throw new InvalidArgumentException(
-                "Controller unbekannt: $ctrl"
-            );
+            $this->redirectToHome();
+//            throw new InvalidArgumentException(
+//                "Controller unbekannt: $ctrl"
+//            );
         }
         $this->_controller = $ctrl;
     }
+
 
     private function setAction($action)
     {
         $actionMethod = sprintf("%sAction", strtolower($action));
         $reflection = new ReflectionClass($this->_controller);
         if (!$reflection->hasMethod($actionMethod)) {
-            throw new InvalidArgumentException(
-                "Dem Controller $this->_controller ist die Methode $actionMethod unbekannt."
-            );
+            $this->redirectToHome();
+//            throw new InvalidArgumentException(
+//                "Dem Controller $this->_controller ist die Methode $actionMethod unbekannt."
+//            );
         }
         $this->_action = $actionMethod;
     }
@@ -82,5 +85,11 @@ class Bootstrap
     {
         $controllerObject = new $this->_controller;
         $controllerObject->{$this->_action}($this->_parameter);
+    }
+
+    private function redirectToHome()
+    {
+        header("Location: /"); // URL der Startseite
+        exit;
     }
 }

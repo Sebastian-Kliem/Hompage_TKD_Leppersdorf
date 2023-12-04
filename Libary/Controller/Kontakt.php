@@ -8,6 +8,12 @@ use PHPMailer\PHPMailer\SMTP;
 
 class Kontakt extends Base_Controller
 {
+    public function homeAction($parameter)
+    {
+        // Weiterleitung zur trainingszeitenAction
+        $this->kontaktAction($parameter);
+    }
+
     public function kontaktAction($parameter)
     {
         session_start();
@@ -91,7 +97,7 @@ class Kontakt extends Base_Controller
             header('Location: '. \App::getBaseURL()."kontakt/kontakt/sendMailResponse/". $header);
         }
 
-        echo $this->renderTemplae('kontakt.phtml', ['sendMailParameter' => $sendMailParameter]);
+        echo $this->renderTemplate('kontakt.phtml', ['sendMailParameter' => $sendMailParameter]);
     }
 
     private function containsUrl($string) {

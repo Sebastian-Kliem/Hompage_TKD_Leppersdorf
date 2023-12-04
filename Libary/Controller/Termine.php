@@ -9,7 +9,11 @@ use Model\Resource\DBQuerys\EventsDBQuery;
 
 class Termine extends Base_Controller
 {
-
+    public function homeAction($parameter)
+    {
+        // Weiterleitung zur trainingszeitenAction
+        $this->overviewAction($parameter);
+    }
     public function overviewAction($parameter)
     {
         session_start();
@@ -42,9 +46,9 @@ class Termine extends Base_Controller
         $eventsArray = $events->getEventsNowOrInFuture();
 
         if ($eventsArray == []) {
-            echo $this->renderTemplae('dbError.phtml', []);
+            echo $this->renderTemplate('dbError.phtml', []);
         } else {
-            echo $this->renderTemplae('EventsOverview.phtml', ['events' => $eventsArray, 'canEdit' => $canEdit]);
+            echo $this->renderTemplate('EventsOverview.phtml', ['events' => $eventsArray, 'canEdit' => $canEdit]);
         }
     }
 
@@ -89,7 +93,7 @@ class Termine extends Base_Controller
         $eventArray = [];
 
         if ($event == null) {
-            echo $this->renderTemplae('dbError.phtml', []);
+            echo $this->renderTemplate('dbError.phtml', []);
         } else {
 
             $eventArray['eventID'] = $event->getId();
@@ -115,7 +119,7 @@ class Termine extends Base_Controller
 
             $eventArray['documents'] = $eventFiles;
 
-            echo $this->renderTemplae('EventsDetails.phtml', ['events' => $eventArray, 'canEdit' => $canEdit]);
+            echo $this->renderTemplate('EventsDetails.phtml', ['events' => $eventArray, 'canEdit' => $canEdit]);
         }
     }
 

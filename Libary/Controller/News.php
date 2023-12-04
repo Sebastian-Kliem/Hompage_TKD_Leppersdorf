@@ -11,11 +11,17 @@ use Model\Resource\DBQuerys\NewsDBQuery;
 
 class News extends Base_Controller
 {
+    public function homeAction($parameter)
+    {
+        // Weiterleitung zur trainingszeitenAction
+        $this->newsAction($parameter);
+    }
+
     public function newsAction($parameter)
     {
         session_start();
 
-        echo $this->renderTemplae('news.phtml', []);
+        echo $this->renderTemplate('news.phtml', []);
     }
 
     public function overviewAction($parameter)
@@ -64,7 +70,7 @@ class News extends Base_Controller
         $news = new NewsDBQuery();
         $newsArray = $news->getLastEventsForNews();
 
-            echo $this->renderTemplae('NewsOverview.phtml', ['newsArray' => $newsArray, 'canEdit' => $canEdit]);
+        echo $this->renderTemplate('NewsOverview.phtml', ['newsArray' => $newsArray, 'canEdit' => $canEdit]);
     }
 
     public function detailsAction($parameter)
@@ -114,7 +120,7 @@ class News extends Base_Controller
         $newsArray = [];
 
         if ($news == null) {
-            echo $this->renderTemplae('dbError.phtml', []);
+            echo $this->renderTemplate('dbError.phtml', []);
         } else {
 
             $newsArray['newsId'] = $news->getId();
@@ -139,7 +145,7 @@ class News extends Base_Controller
 
             $newsArray['documents'] = $newsfiles;
 
-            echo $this->renderTemplae('NewsDetails.phtml', ['news' => $newsArray, 'canEdit' => $canEdit]);
+            echo $this->renderTemplate('NewsDetails.phtml', ['news' => $newsArray, 'canEdit' => $canEdit]);
         }
     }
 
