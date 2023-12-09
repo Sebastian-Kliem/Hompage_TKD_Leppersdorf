@@ -19,13 +19,17 @@ document.addEventListener('DOMContentLoaded', function() {
             submenu.style.display = 'none';
         });
     });
+
+    // Hier fügen Sie den neuen Teil für die Upload-Nachricht hinzu
+    const uploadForm = document.getElementById('picture_Upload_Form');
+    if (uploadForm) {
+        uploadForm.addEventListener('submit', function() {
+            const uploadMessage = document.getElementById('uploadMessage');
+            if (uploadMessage) {
+                uploadMessage.style.display = 'block';
+            }
+        });
+    }
 });
 
-// Deaktiviert das Hover-Verhalten für kleine Bildschirme
-// window.addEventListener('resize', function() {
-//     if (window.innerWidth < 600) {
-//         document.querySelectorAll('.submenu').forEach(submenu => {
-//             submenu.style.display = 'none';
-//         });
-//     }
-// });
+

@@ -88,7 +88,7 @@ class Fotoupload extends Base_Controller
                         }
 
                         if ($erfolgreicheUploads > 0 && count($fehlgeschlageneUploads) === 0) {
-                            $upload_status = "Alle Dateien wurden erfolgreich hochgeladen.";
+                            $upload_status = strval($erfolgreicheUploads) . " Dateien wurden erfolgreich hochgeladen.";
                         } elseif ($erfolgreicheUploads > 0) {
                             $upload_status = $erfolgreicheUploads . " Datei(en) erfolgreich hochgeladen. Fehlgeschlagen: " . implode(", ", $fehlgeschlageneUploads);
                         } else {

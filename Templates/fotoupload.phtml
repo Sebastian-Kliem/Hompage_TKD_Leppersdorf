@@ -10,7 +10,7 @@
     </div>
 
     <div class="Formular">
-        <form method="post" class="contact-formular" enctype="multipart/form-data">
+        <form method="post" class="contact-formular" id="picture_Upload_Form" enctype="multipart/form-data">
 
             <label for="name">Ihr Name:</label><br>
             <input type="text" id="name" name="name" required><br>
@@ -23,6 +23,13 @@
 
             Wähle die Bilder, die du hochladen möchtest:
             <input type="file" name="files[]" accept="image/jpeg, image/png, image/gif" multiple>
+
+            <div id="uploadMessage" style="display: none;">
+                <h3>
+                    Bitte warten Sie, der Upload wurde gestartet und verarbeitet ... <br>
+                    Dies kann ein paar Minuten dauern ...
+                </h3>
+            </div>
 
             <div class="Formular_Submit">
                 <button type="submit" name="submit_upload">Dateien hochladen.</button>
