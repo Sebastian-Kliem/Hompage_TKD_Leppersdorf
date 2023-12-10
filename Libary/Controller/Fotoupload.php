@@ -45,7 +45,8 @@ class Fotoupload extends Base_Controller
                 $name = preg_replace("/[^a-zA-Z0-9]+/", "", $_POST['name']); // Entfernt alle nicht-alphanumerischen Zeichen
                 $event_name = preg_replace("/[^a-zA-Z0-9]+/", "", $_POST['eventname']); // Entfernt alle nicht-alphanumerischen Zeichen
 
-                $target_directory = "picture_uploads/" . $name . '_' . $event_name . '/';
+                $unique_identifier = time() . '_' . rand();
+                $target_directory = "picture_uploads/" . $name . '_' . $event_name . '_' . $unique_identifier . '/';
 
                 if (!file_exists($target_directory)) {
                     if (!mkdir($target_directory, 0777, true)) {
