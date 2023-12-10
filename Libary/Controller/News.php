@@ -62,9 +62,13 @@ class News extends Base_Controller
 
         $canEdit = false;
         if ($_SESSION) {
-            if ($_SESSION['isModerator'] || $_SESSION['isAdmin']) {
-                $canEdit = true;
+            if (isset($_SESSION['isModerator']) || isset($_SESSION['isAdmin'])) {
+                if ($_SESSION['isModerator'] || $_SESSION['isAdmin']) {
+                    $canEdit = true;
+                }
             }
+
+
         }
 
         $news = new NewsDBQuery();
@@ -109,8 +113,10 @@ class News extends Base_Controller
 
         $canEdit = false;
         if ($_SESSION) {
-            if ($_SESSION['isModerator'] || $_SESSION['isAdmin']) {
-                $canEdit = true;
+            if (isset($_SESSION['isModerator']) || isset($_SESSION['isAdmin'])) {
+                if ($_SESSION['isModerator'] || $_SESSION['isAdmin']) {
+                    $canEdit = true;
+                }
             }
         }
 
@@ -154,9 +160,11 @@ class News extends Base_Controller
         session_start();
 
         if ($_SESSION) {
-            if ($_SESSION['isModerator'] || $_SESSION['isAdmin']) {
-                $event = new NewsDBQuery();
-                $eventArray = $event->deleteNews($parameter['id']);
+            if (isset($_SESSION['isModerator']) || isset($_SESSION['isAdmin'])) {
+                if ($_SESSION['isModerator'] || $_SESSION['isAdmin']) {
+                    $event = new NewsDBQuery();
+                    $eventArray = $event->deleteNews($parameter['id']);
+                }
             }
         }
         header('Location: '. \App::getBaseURL()."news/overview");
@@ -167,11 +175,13 @@ class News extends Base_Controller
         session_start();
 
         if ($_SESSION) {
-            if ($_SESSION['isModerator'] || $_SESSION['isAdmin']) {
+            if (isset($_SESSION['isModerator']) || isset($_SESSION['isAdmin'])) {
+                if ($_SESSION['isModerator'] || $_SESSION['isAdmin']) {
 
-                var_dump($parameter);
-                $news = new NewsDBQuery();
-                $news->deleteDocument($parameter['fileid']);
+                    var_dump($parameter);
+                    $news = new NewsDBQuery();
+                    $news->deleteDocument($parameter['fileid']);
+                }
             }
         }
         header('Location: '. \App::getBaseURL()."news/details/id/". $parameter['newsId']);
